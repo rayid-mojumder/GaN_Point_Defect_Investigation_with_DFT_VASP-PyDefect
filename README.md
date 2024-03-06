@@ -56,3 +56,6 @@ This README provides detailed instructions for conducting DFT simulations of Gal
 * Kresse, G., and Furthmüller, J. Efficient iterative schemes for ab initio total-energy calculations using a plane-wave basis set. Phys. Rev. B 54, 11169 – Published 1 October 1996.
 * VASP User Guide and Documentation
 * Slurm Workload Manager Documentation
+
+## Copyright
+* Md. Rayid Hasan Mojumder, Penn State, USA
