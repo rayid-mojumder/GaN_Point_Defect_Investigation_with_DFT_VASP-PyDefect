@@ -1,4 +1,4 @@
-# VASP Simulation Guide for GaN
+# VASP DFT Simulation Guide for GaN
 This README provides detailed instructions for conducting DFT simulations of Gallium Nitride (GaN) using the Vienna Ab initio Simulation Package (VASP). The guide covers various types of calculations including self-consistent field (scf), band structure, density of states (DOS), projected density of states (PDOS), and phonon calculations, both with and without radiation-induced defects.
 
 ## Table of Contents
