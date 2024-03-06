@@ -2,15 +2,15 @@
 This README provides detailed instructions for conducting DFT simulations of Gallium Nitride (GaN) using the Vienna Ab initio Simulation Package (VASP). The guide covers various types of calculations including self-consistent field (scf), band structure, density of states (DOS), projected density of states (PDOS), and phonon calculations, both with and without radiation-induced defects.
 
 ## Table of Contents
-- Prerequisites
-- SCF Calculations
-- Band Structure Calculations
-- Density of States Calculations
-- Phonon Calculations
-- Incorporating Radiation-Induced Defects
-- Post-Processing and Analysis
-- Troubleshooting
-- References
+- [Prerequisites](https://github.com/rayid-mojumder/DFT-simulation-VASP/blob/main/README.md#prerequisites)
+- [SCF Calculations](https://github.com/rayid-mojumder/DFT-simulation-VASP/blob/main/README.md#scf-calculations)
+- [Band Structure Calculations](https://github.com/rayid-mojumder/DFT-simulation-VASP/blob/main/README.md#band-structure-calculations)
+- [Density of States Calculations](https://github.com/rayid-mojumder/DFT-simulation-VASP/blob/main/README.md#density-of-states-calculations)
+- [Phonon Calculations](https://github.com/rayid-mojumder/DFT-simulation-VASP/blob/main/README.md#phonon-calculations)
+- [Incorporating Radiation-Induced Defects](https://github.com/rayid-mojumder/DFT-simulation-VASP/blob/main/README.md#incorporating-radiation-induced-defects)
+- [Post-Processing and Analysis](https://github.com/rayid-mojumder/DFT-simulation-VASP/blob/main/README.md#post-processing-and-analysis)
+- [Troubleshooting](https://github.com/rayid-mojumder/DFT-simulation-VASP/blob/main/README.md#troubleshooting)
+- [References](https://github.com/rayid-mojumder/DFT-simulation-VASP/blob/main/README.md#references)
 
 ## Prerequisites
 * VASP license and software installation
@@ -54,5 +54,5 @@ This README provides detailed instructions for conducting DFT simulations of Gal
 
 ## References
 * Kresse, G., and Furthmüller, J. Efficient iterative schemes for ab initio total-energy calculations using a plane-wave basis set. Phys. Rev. B 54, 11169 – Published 1 October 1996.
-VASP User Guide and Documentation
-Slurm Workload Manager Documentation
+* VASP User Guide and Documentation
+* Slurm Workload Manager Documentation
