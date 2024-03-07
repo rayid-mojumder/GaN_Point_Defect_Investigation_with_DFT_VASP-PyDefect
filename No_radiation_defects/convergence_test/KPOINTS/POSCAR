@@ -1,0 +1,12 @@
+Ga N
+1.0                                                                 #scaling parameter    
+        3.1800000668         0.0000000000         0.0000000000      #lattice constant a = sqrt (x1^2 + y1^2 + z1^2)
+       -1.5900000334         2.7539608418         0.0000000000      #lattice constant b = sqrt (x2^2 + y2^2 + z2^2) 
+        0.0000000000         0.0000000000         5.1659998894      #lattice constant c = sqrt (x3^2 + y3^2 + z3^2)
+   Ga    N                                                          #atomic species
+    2    2                                                          #number of atoms(site)
+Direct                                                              #direct (fractional) coordinates relative to the unit cell axes (in Angstrom)
+     0.333333343         0.666666687         0.000000000
+     0.666666627         0.333333313         0.500000000
+     0.333333343         0.666666687         0.375000000
+     0.666666627         0.333333313         0.875000000
