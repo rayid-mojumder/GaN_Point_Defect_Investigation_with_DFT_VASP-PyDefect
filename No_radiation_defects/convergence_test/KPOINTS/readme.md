@@ -18,9 +18,9 @@ This script automates the process of conducting a K-point convergence test using
    - Adjust the K-point range within the script (K_START, K_END, K_INCREMENT) as needed.
 
 2. Execute the Script:
-   - Make the script executable with: chmod +x k_conv_test_2.sh.
-   - If needed, convert line endings to Unix format: sed -i 's/\r$//' k_conv_test_2.sh.
-   - Launch the script: ./k_conv_test_2.sh.
+   - Make the script executable with: chmod +x k_conv_test.sh.
+   - If needed, convert line endings to Unix format: sed -i 's/\r$//' k_conv_test.sh.
+   - Launch the script: ./k_conv_test.sh.
 
 3. Analyze Results:
    - Post-execution, total_energies.txt will contain the total energies corresponding to each K-point mesh.
