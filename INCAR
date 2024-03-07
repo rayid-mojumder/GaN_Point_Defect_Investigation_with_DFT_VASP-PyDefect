@@ -1,0 +1,10 @@
+SYSTEM = GaN  # Descriptive name of the system
+ISTART = 0                 # Job is started from scratch
+ICHARG = 2                 # Initial electron density from atomic charges
+
+ENCUT = 430                # Energy cutoff for plane waves
+
+ISMEAR = 0                  # Gaussian smearing, good for insulators/semiconductors
+SIGMA = 0.05                # Width of smearing in eV
+
+EDIFF = 1E-9               # Energy convergence criterion
