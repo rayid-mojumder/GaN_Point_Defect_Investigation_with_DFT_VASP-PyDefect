@@ -23,4 +23,4 @@ srun vasp_std
 echo "End: $(date)"
 
 #command line execution
-#sbatch run_relax.slurm
+#sbatch run_scf.slurm
