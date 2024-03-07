@@ -1,0 +1,5 @@
+K-Points
+0               # Automatic generation scheme
+Gamma           # Centered: k mesh with equally spaced k point
+17 17 17           # Grid size:  odd number of k points in each direction results in a Γ-centered k-mesh
+0 0 0           # Shift (usually zero for bulk)
