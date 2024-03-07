@@ -38,18 +38,18 @@ do
 #SBATCH --ntasks-per-node=32
 #SBATCH --cpus-per-task=1
 
-echo "Job started on \$(hostname) at \$(date)"
+echo "Job started on $(hostname) at $(date)"
 source ~/.bashrc
-export PATH="\$(pwd):\${PATH}"
+export PATH="$(pwd):${PATH}"
 # Load VASP module
 module use /storage/icds/RISE/sw8/modules
 module load vasp/vasp-6.3.1vtst
 
-echo "Start: \$(date)"
+echo "Start: $(date)"
 ## Run VASP std or gam version
 srun vasp_std
 # srun vasp_gam
-echo "End: \$(date)"
+echo "End: $(date)"
 
 EOF
    # Return to the parent directory.
