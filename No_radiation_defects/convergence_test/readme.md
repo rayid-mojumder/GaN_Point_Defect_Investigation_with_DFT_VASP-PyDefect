@@ -1,7 +1,7 @@
-# Convergence Test
+# Convergence Tests
 In Density Functional Theory (DFT) calculations using the Vienna Ab initio Simulation Package (VASP), ensuring the convergence of the calculations with respect to the plane-wave cutoff energy (**ENCUT**) and the **K-point** mesh is crucial for obtaining reliable results. Here's a detailed look at these two types of convergence tests:
 
-## K-point Convergence Test:
+## 1. K-point Convergence Test:
 The k-point mesh determines the sampling of the Brillouin zone. Insufficient k-point sampling can lead to inaccurate results, especially for properties that are sensitive to the electronic structure near the Fermi level.
 
 ### How to perform a K-point Convergence Test:
@@ -14,7 +14,7 @@ The k-point mesh determines the sampling of the Brillouin zone. Insufficient k-p
 * Utilize symmetry reduction if applicable to reduce computational effort.
 * For metals or systems with small band gaps, a denser k-point mesh might be necessary due to rapid changes in electronic states near the Fermi level.
 
-## ECUT Convergence Test (Plane-wave Cutoff Energy):
+## 2. ECUT Convergence Test (Plane-wave Cutoff Energy):
 The plane-wave cutoff energy (ENCUT) determines the kinetic energy limit for the plane waves used in expanding the wave functions. Lower cutoff values lead to faster computations but can compromise accuracy.
 
 ### How to perform an ECUT Convergence Test:
