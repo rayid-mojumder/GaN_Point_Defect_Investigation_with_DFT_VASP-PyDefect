@@ -1,4 +1,4 @@
-# GaN Defect Analysis with VASP
+# GaN Electronic Properties (scf, bands, dos) with VASP
 
 To prepare for your VASP calculations involving relaxation, SCF, band structure, and DOS for GaN, you need properly configured INCAR, POSCAR, and KPOINTS files. Below is the comprehensive guidance for each calculation step, including file preparation, file usage sequence, and plotting instructions:
 
