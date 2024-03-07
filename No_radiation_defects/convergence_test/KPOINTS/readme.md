@@ -30,6 +30,10 @@ This script automates the process of conducting a K-point convergence test using
 - Assumes knowledge of VASP and possession of a license.
 - SLURM environment and compute permissions are required.
 - Confirm VASP output integrity before basing decisions on extracted data.
-- After run wait till the total_energies.txt file is generated, it will store the extracted data
+- After running wait till the total_energies.txt file is generated, it will store the extracted data
 
 Follow these guidelines to efficiently perform K-point convergence tests with VASP in a SLURM environment, enhancing both accuracy and computational efficiency.
+
+
+#### Additional Details:
+- **k_conv_test_1a.sh** refers to creating and simulating different KPOINTS files without total energy purging. After all jobs are completed, the final energy data can be manually purged together or could be purged by the **k_conv_test_1b.sh** file
