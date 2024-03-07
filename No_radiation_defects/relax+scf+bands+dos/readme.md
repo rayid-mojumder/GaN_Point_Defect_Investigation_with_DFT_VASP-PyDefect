@@ -2,7 +2,7 @@
 
 To prepare for your VASP calculations involving relaxation, SCF, band structure, and DOS for GaN, you need properly configured INCAR, POSCAR, and KPOINTS files. Below is the comprehensive guidance for each calculation step, including file preparation, file usage sequence, and plotting instructions:
 
-## Relaxation Calculation:
+## 1. Relaxation Calculation:
 INCAR.relax:
 ```shell
 SYSTEM = GaN Relaxation    # Descriptive name of the system
@@ -27,7 +27,7 @@ Monkhorst Pack  # Centered: k mesh with equally spaced k point
 0 0 0           # Shift (usually zero for bulk)
 ```
  
-## SCF Calculation:
+## 2. SCF Calculation:
 File Usage Sequence and Plotting:
 1.	Relaxation → SCF:
 •	Use CONTCAR (and KPOINTS) from relaxation as the POSCAR for SCF.
@@ -51,7 +51,7 @@ LREAL = Auto                # Real-space projection, auto-selected
 POSCAR: Updated with the relaxed structure, typically taken from the CONTCAR of the relaxation step.
 KPOINTS: Unchanged from the relaxation setup for consistency in k-point sampling.
  
-## Band Structure Calculation:
+## 3. Band Structure Calculation:
 INCAR.band:
 ```shell
 SYSTEM = GaN Band Structure # Descriptive name for the band structure calculation
@@ -80,7 +80,7 @@ Reciprocal                       # Coordinates in reciprocal space
 ```shell
  plot 'EIGENVAL' using ($1):($2) with lines
  ```
-## DOS Calculation:
+## 4. DOS Calculation:
 INCAR.dos:
 ```shell
 SYSTEM = GaN DOS             # Descriptive name for the DOS calculation
