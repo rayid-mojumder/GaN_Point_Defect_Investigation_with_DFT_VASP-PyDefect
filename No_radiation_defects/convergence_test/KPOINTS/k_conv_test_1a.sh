@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # Define the range of k-points to test. For example, from 4x4x4 to 6x6x6.
-K_START=4
-K_END=6
+K_START=3
+K_END=12
 K_INCREMENT=1
+
+############################### Crate KPOINTS directories #######################################
 
 # Loop over the specified range of k-point values.
 for (( K=$K_START; K<=$K_END; K+=$K_INCREMENT ))
@@ -28,15 +30,13 @@ do
    sbatch << EOF
 #!/bin/bash
 #SBATCH --job-name=GaN_Conv_KPOINTS_${K}x${K}x${K}
-#SBATCH --account=open          # For open access
-#SBATCH --partition=open        # For open access
-##SBATCH --account=mjj5508_b    # For Prof. Mia Jin's access point
-##SBATCH --partition=sla-prio   # For Prof. Mia Jin's access point
+#SBATCH --account=open
+#SBATCH --partition=open
 #SBATCH --mem=32GB
 #SBATCH --time=00:30:00
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=32    # Need to be at least 25 to work. But why?
-#SBATCH --cpus-per-task=1       # For normal MPI jobs set this value to 1
+#SBATCH --ntasks-per-node=32
+#SBATCH --cpus-per-task=1
 
 echo "Job started on \$(hostname) at \$(date)"
 source ~/.bashrc
