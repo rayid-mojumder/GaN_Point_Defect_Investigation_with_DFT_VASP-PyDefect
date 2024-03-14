@@ -7,6 +7,9 @@
     </div>
 </div>
 
+[![Tutorial: Modelling Point Defects in Semiconductors with VASP (Audio Fix)](https://img.youtube.com/vi/FWz7nm9qoNg/0.jpg)](https://www.youtube.com/watch?v=FWz7nm9qoNg)
+
+
 
 Slides available here:
 [Tutorial: Understanding and Modelling Defects in Semiconductors (with VASP)](https://speakerdeck.com/kavanase/tutorial-understanding-and-modelling-defects-in-semiconductors-with-vasp?slide=12)
