@@ -1,4 +1,4 @@
-## Learn about Point Defects in Semiconductors: Formating energy equation, transition level diagram
+## Modeling Point Defects: formating energy equation, transition level diagram
 #### "Tutorial: Modelling Point Defects in Semiconductors with VASP (Audio Fix)" by Seán R. Kavanagh
 
 * {% include video.html path="https://www.youtube.com/watch?v=FWz7nm9qoNg" %}
