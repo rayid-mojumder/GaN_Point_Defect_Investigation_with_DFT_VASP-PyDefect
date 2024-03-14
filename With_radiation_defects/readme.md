@@ -9,7 +9,7 @@ Slides available here:
 [Tutorial: Understanding and Modelling Defects in Semiconductors (with VASP)](https://speakerdeck.com/kavanase/tutorial-understanding-and-modelling-defects-in-semiconductors-with-vasp?slide=12),
 [ShakeNBreak: Identifying Ground-State Defect Structures (SMTG Group Meeting Sept 2022)](https://speakerdeck.com/kavanase/shakenbreak-identifying-ground-state-defect-structures-smtg-group-meeting-sept-2022)
 
-<br>
+
 ## More basic on Points Defects and Dislocations
 #### "Point Defects {Texas A&M: Intro to Materials}" by Patrick Shamberger
 * {% include video.html path="https://www.youtube.com/watch?v=EuUJApDftkI" %}
