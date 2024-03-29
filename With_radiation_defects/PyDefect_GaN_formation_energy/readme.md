@@ -196,7 +196,7 @@ Step-21: Decision of interstitial sites
     pydefect s -p ../unitcell/structure_opt/CONTCAR
     pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 2 
     ]
-  #rebuild the 'defect_in.yaml' file - for  adding interistitials to antisite and vacancy defects
+  #rebuild the 'defect_in.yaml' file - for  adding interstitials to antisite and vacancy defects
   pydefect ds
   #If the input structure is different from the standardized primitive cell, NotPrimitiveError is raised
   #To pop the interstitial sites, use>> pydefect pi -i 1 -s supercell_info.json
