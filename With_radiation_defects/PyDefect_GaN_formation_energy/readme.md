@@ -50,6 +50,7 @@ Step-4: Create the directory tree
   mkdir unitcell/relax
   mkdir cpd
   mkdir defect
+  mkdir defect/perfect
 
 Step-5: Download a pristine bulk unitcell from Materials Project and move it to the 'unitcell/structure_opt/' folder
 Step-6: Calculate relaxation (point-defect calculations are generally performed at the theoretically relaxed structure)
@@ -163,7 +164,7 @@ Step-18: Check the defect formation energies sooner (avoiding laborious CPD calc
 Step-19: Create files related to a supercell for defect incorporation
   #go to '/defect/' directory
   cd /storage/work/mvm7218/GaN/defect
-  #copy the CONTCAR obtained after relax calcultion to the 'structure_opt/' directory
+  #copy the CONTCAR obtained after relax calcultion to the 'structure_opt/' directory [use primitive POSCAR, if error occurs with CONTCAR]
   cp ../unitcell/relax/CONTCAR ../unitcell/structure_opt
   #create supercell POSCAR file (SPOSCAR)
   pydefect s -p ../unitcell/structure_opt/CONTCAR
@@ -180,6 +181,61 @@ Step-20: Incoporate defects
   #to manually set the oxidation state of Si to 4: pydefect ds --oxi_states Si 4
 
 Step-21: Decision of interstitial sites
+  #generate volumetric data, e.g., AECCAR and LOCPOT, based on the standardized primitive cell, already done in DOS calculation
+  cp ../unitcell/dos/AECCAR0 .
+  cp ../unitcell/dos/AECCAR1 .
+  cp ../unitcell/dos/AECCAR2 .
+  cp ../unitcell/dos/LOCPOT .
+  #see the local minima of the charge density 
+  pydefect_vasp le -v AECCAR{0,2} -i all_electron_charge
+  pydefect_print volumetric_data_local_extrema.json
+  #add the two interstitial sites
+  pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 2 [did not work, let's proceed without intersitials]
+  #If the input structure is different from the standardized primitive cell, NotPrimitiveError is raised
+  #To pop the interstitial sites, use>> pydefect pi -i 1 -s supercell_info.json
+
+Step-22: Create point-defect calculation directories
+  pydefect_vasp de
+  #see the 'defect_entry.json' file to see information about a point defect in each directory>> cd 'foldername' >> pydefect_print defect_entry.json
+  #avoid treating complex defects. skipping generation of defect_entry.json
+
+Step-23: Parsing supercell calculation results
+  #create the vasp input files
+  for i in */;do cd $i; vise vs -t defect ; cd ../;done
+
+Step-24: Corrections of defect formation energies in finite-size supercells
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
