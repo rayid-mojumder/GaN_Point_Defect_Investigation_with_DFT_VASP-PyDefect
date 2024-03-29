@@ -176,7 +176,7 @@ Step-19: Create files related to a supercell for defect incorporation
 Step-20: Incoporate defects
   #build the 'defect_in.yaml' file - for  antisite and vacancy defects
   pydefect ds
-  #add substituted defect species (n-type: Si, p-type: Mg)
+  #add substituted defect species (n-type: Si, p-type: Mg)pydefect_print volumetric_data_local_extrema.json
   pydefect ds -d Si Mg
   #to manually set the oxidation state of Si to 4: pydefect ds --oxi_states Si 4
 
@@ -188,9 +188,16 @@ Step-21: Decision of interstitial sites
   cp ../unitcell/dos/LOCPOT .
   #see the local minima of the charge density 
   pydefect_vasp le -v AECCAR{0,2} -i all_electron_charge
-  pydefect_print volumetric_data_local_extrema.json
+  
   #add the two interstitial sites
-  pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 2 [did not work, let's proceed without intersitials]
+  pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 2 
+  [If does not work (and receive NotPrimitiveError, follow this:
+    #replace the value of the CONTCAR file in '/unitcell/structure_opt/' file with 'Unitcell in the supercell_info.json'
+    pydefect s -p ../unitcell/structure_opt/CONTCAR
+    pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 2 
+    ]
+  #rebuild the 'defect_in.yaml' file - for  adding interistitials to antisite and vacancy defects
+  pydefect ds
   #If the input structure is different from the standardized primitive cell, NotPrimitiveError is raised
   #To pop the interstitial sites, use>> pydefect pi -i 1 -s supercell_info.json
 
