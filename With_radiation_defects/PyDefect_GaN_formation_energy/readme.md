@@ -203,10 +203,11 @@ Step-23: Parsing supercell calculation results
   #create the vasp input files
   for i in */;do cd $i; vise vs -t defect ; cd ../;done
   #copy sbatch script to all the folders (use 4 cpu, 256 GB ram, 32 tasks per cpu)
-  for i in */;do cd $i; cp ../srun.slurm ; cd ../;done
+  for i in */;do cd $i; cp ../srun.slurm .; cd ../;done
   #execute the bash command to loop through each directory, run sbatch file, and wait till the job is complete
   #defect_vasp_run.sh is given in later portion
   chmod +x defect_vasp_run.sh
+  dos2unix defect_vasp_run.sh
   ./defect_vasp_run.sh
 
 
@@ -383,7 +384,7 @@ class MpEntries:
 ######################### defect_vasp_run.sh ##########################
 
 for dir in */; do
-    cd "$dir"
+    cd $dir
     # Submit the job and capture the job ID
     JOB_ID=$(sbatch srun.slurm | awk '{print $4}')
     cd ..
