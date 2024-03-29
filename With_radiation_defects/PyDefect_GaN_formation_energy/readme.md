@@ -202,9 +202,16 @@ Step-22: Create point-defect calculation directories
 Step-23: Parsing supercell calculation results
   #create the vasp input files
   for i in */;do cd $i; vise vs -t defect ; cd ../;done
+  #copy sbatch script to all the folders (use 4 cpu, 256 GB ram, 32 tasks per cpu)
+  for i in */;do cd $i; cp ../srun.slurm ; cd ../;done
+  #execute the bash command to loop through each directory, run sbatch file, and wait till the job is complete
+  #defect_vasp_run.sh is given in later portion
+  chmod +x defect_vasp_run.sh
+  ./defect_vasp_run.sh
+
 
 Step-24: Corrections of defect formation energies in finite-size supercells
-  
+
 
 
 
@@ -371,6 +378,24 @@ class MpEntries:
         with MPRester() as m:
             self.materials = m.get_entries(
                 criteria, property_data=additional_properties)
+
+
+######################### defect_vasp_run.sh ##########################
+
+for dir in */; do
+    cd "$dir"
+    # Submit the job and capture the job ID
+    JOB_ID=$(sbatch srun.slurm | awk '{print $4}')
+    cd ..
+
+    # Wait for the job to complete
+    echo "Waiting for job $JOB_ID to complete..."
+    while squeue | grep -q "$JOB_ID"; do
+        sleep 10  # Check every 10 seconds
+    done
+    echo "Job $JOB_ID completed."
+done
+
 
 
 ########################## Suggestions ##################
