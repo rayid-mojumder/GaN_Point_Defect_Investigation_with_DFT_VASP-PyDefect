@@ -217,9 +217,9 @@ Step-23: Parsing supercell calculation results
   #execute the bash command to loop through each directory, run sbatch file, and wait till the job is complete
   #get jupyter-with 16 cores and 32 GB per core memory, and run command from there
   #defect_vasp_run.sh is given in later portion
-  chmod +x defect_vasp_run.sh
-  dos2unix defect_vasp_run.sh
-  ./defect_vasp_run.sh
+  chmod +x defect_vasp_run_parallel.sh
+  dos2unix defect_vasp_run_parallel.sh
+  ./defect_vasp_run_parallel.sh
 
 
 Step-24: Corrections of defect formation energies in finite-size supercells
@@ -408,6 +408,17 @@ for dir in */; do
     echo "Job $JOB_ID completed."
 done
 
+########################## defect_vasp_run_paralle.sh ##################
+
+for dir in */; do
+    cd $dir
+    # Submit the job and capture the job ID
+    JOB_ID=$(sbatch srun.slurm | awk '{print $4}')
+    cd ..
+
+    # Wait for the job to complete
+    echo "Waiting for job $JOB_ID to complete..."
+done
 
 
 ########################## Suggestions ##################
