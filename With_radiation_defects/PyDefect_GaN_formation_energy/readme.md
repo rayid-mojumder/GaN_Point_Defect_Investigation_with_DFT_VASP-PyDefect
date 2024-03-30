@@ -13,6 +13,7 @@ Step-2: Extract POTCAR files in a directory
 
 Step-3: Edit .pmgrc.yaml file and add POTCAR and Materials project API
   cd ~
+  cd .config
   nano .pmgrc.yaml (or nano .config/.pmgrc.yaml) (if error with .pmgrc.yaml, then use>> find . -name .pmgrc.yaml -type f -exec readlink -f \{\} \;)
     PMG_DEFAULT_FUNCTIONAL: PBE_54
     PMG_MAPI_KEY: ksrEbuvP0ucRZAas11zIz8y7lii15gpy
@@ -190,7 +191,7 @@ Step-21: Decision of interstitial sites
   pydefect_vasp le -v AECCAR{0,2} -i all_electron_charge
   
   #add the two interstitial sites
-  pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 2 
+  pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 
   [If does not work (and receive NotPrimitiveError, follow this:
     #replace the value of the CONTCAR file in '/unitcell/structure_opt/' file with 'Unitcell in the supercell_info.json'
     pydefect s -p ../unitcell/structure_opt/CONTCAR
