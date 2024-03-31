@@ -222,6 +222,10 @@ Step-23: Parsing supercell calculation results
   dos2unix defect_vasp_run_parallel.sh
   ./defect_vasp_run_parallel.sh
 
+Step-24: Generate the calc_results.json that contains the first-principles calculation results related to the defect properties
+  #generate calc_results.json in all the calculated directories
+  pydefect_vasp cr -d *_*/ perfect
+
 
 Step-24: Corrections of defect formation energies in finite-size supercells
 
