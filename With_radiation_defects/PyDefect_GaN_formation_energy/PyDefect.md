@@ -226,9 +226,24 @@ Step-24: Generate the calc_results.json that contains the first-principles calcu
   #generate calc_results.json in all the calculated directories
   pydefect_vasp cr -d *_*/ perfect
 
+Step-24: Corrections of defect formation energies in finite-size supercells [Ionic convergence not achieved]
+  #create defect_structure_info.json files to analyze the defect local structures
+  pydefect dsi -d *_*/
+  #create VESTA file (defect.vesta) for analyzing the defect structure files
+  pydefect_util dvf -d *_* #creates file even omitting the directory with ionic convergence = false
 
-Step-24: Corrections of defect formation energies in finite-size supercells
+Step-25: Check defect eigenvalues and band-edge states in supercell calculations [Optional Stage]
+  #defects with (1) deep localized states inside band gap, (2) band edges, (3) without defect states inside the band gap or near band edges
+  #analyze the eigenvalues and band-edge states 
+    #generates the 'perfect_band_edge_state.json' files to show the information on the eigenvalues and orbital information of the VBM and CBM in the perfect supercell.
+    pydefect_vasp pbes -d perfect
+    #create 'band_edge_orbital_infos.json' files at defect directories
+    pydefect_vasp beoi -d *_* -pbes perfect/perfect_band_edge_state.json  #creates 'eigenvalues.pdf' file
+    #generate the edge_characters.json file with the band edge
+    pydefect bes -d *_*/ -pbes perfect/perfect_band_edge_state.json
 
+Step-26: Plot defect formation eenergies
+  
 
 
 
@@ -429,3 +444,5 @@ done
 ########################## Suggestions ##################
 
 execute command from the basic terminal, not jupyter terminal
+
+scancel --name=GaN_supercell_defect_DOPED
