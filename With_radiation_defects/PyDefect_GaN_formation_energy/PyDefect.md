@@ -243,7 +243,9 @@ Step-25: Check defect eigenvalues and band-edge states in supercell calculations
     pydefect bes -d *_*/ -pbes perfect/perfect_band_edge_state.json
 
 Step-26: Plot defect formation eenergies
-  
+  #defect formation energies requires - the band edges, chemical potentials of the competing phases, and total energies of the perfect and defective supercells.
+  #
+
 
 
 
@@ -441,8 +443,37 @@ for dir in */; do
 done
 
 
+######################### Check electronic and ionic convergence ###############
+#########################   check_convergence.sh  ##############################
+
+#!/bin/bash
+
+# Loop through directories
+for dir in */; do
+  # Check if OUTCAR exists
+  if [[ -f "${dir}/OUTCAR" ]]; then
+    # Check for ionic convergence
+    if grep -q "reached required accuracy - stopping structural energy minimisation" "${dir}/OUTCAR"; then
+      echo "Ionic convergence achieved in ${dir}"
+    else
+      echo "Ionic convergence NOT achieved in ${dir}"
+    fi
+  else
+    echo "OUTCAR not found in ${dir}"
+  fi
+done
+
+
+
 ########################## Suggestions ##################
 
 execute command from the basic terminal, not jupyter terminal
 
-scancel --name=GaN_supercell_defect_DOPED
+## Cancel all the sbatch queued file by 'job name'
+>> scancel --name=GaN_supercell_defect_DOPED
+
+>> Remove folder: rm -rf folder_name
+>> Remove file: rm -r file_name
+## If permission denied while using 'remove (rm)', change permission and access
+>> chmod -R u+rwX folder_or_file_name
+>> rm -rf folder_or_file_name
