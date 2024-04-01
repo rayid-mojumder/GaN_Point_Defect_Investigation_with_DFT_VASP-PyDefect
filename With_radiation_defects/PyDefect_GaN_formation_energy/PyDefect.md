@@ -312,7 +312,8 @@ vise vs -t dielectric_dfpt -d ../structure_opt
 
 
 
-
+################# Correct any INCAR settings ################
+for i in */;do cd $i; sed -i '15d' INCAR; sed -i '16d' INCAR; echo "EDIFFG  =  -0.01" >> INCAR; echo "NSW = 40" >> INCAR; cd ../;done
 
 
 
