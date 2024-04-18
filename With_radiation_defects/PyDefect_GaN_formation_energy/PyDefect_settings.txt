@@ -225,10 +225,13 @@ Step-23: Parsing supercell calculation results
 _>
 
 Step-24: Generate the calc_results.json that contains the first-principles calculation results related to the defect properties
-  #generate calc_results.json in all the calculated directories
+  #generate calc_results.json in all the calculated directories 
   pydefect_vasp cr -d *_*/ perfect
 
-Step-24: Corrections of defect formation energies in finite-size supercells [Ionic convergence not achieved]
+Step-24: Corrections of defect formation energies in finite-size supercells
+  #the total energies for charged defects are not properly estimated due to interactions between a defect, its images, and background charge
+  cd ..
+  pydefect efnv -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell.yaml
   #create defect_structure_info.json files to analyze the defect local structures
   pydefect dsi -d *_*/
   #create VESTA file (defect.vesta) for analyzing the defect structure files
@@ -495,7 +498,7 @@ scancel --name=GaN_supercell_defect_DOPED
 
 #######################
 
-
+[Run 'defect/perfect' separately]
 
 [mvm7218@submit03 defect]$ for dir in */;do cd $dir; rm -rf INCAR; cp ../INCAR .; cd ..; done
 [mvm7218@submit03 defect]$ for dir in */;do cd $dir; rm -rf *.out; cd ..; done
