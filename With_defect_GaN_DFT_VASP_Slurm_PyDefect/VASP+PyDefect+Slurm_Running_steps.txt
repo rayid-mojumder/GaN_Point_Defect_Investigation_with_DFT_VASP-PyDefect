@@ -1,3 +1,10 @@
+#################### Welcome to pydefect documentation! ##################
+https://kumagai-group.github.io/pydefect/index.html
+https://github.com/kumagai-group/pydefect
+#########################################################################
+_>Start
+#########################################################################
+
 [mvm7218@p-sc-2344 structure_opt]$ cd ~
 [mvm7218@p-sc-2344 ~]$ nano ./.config/.pmgrc.yaml
 
