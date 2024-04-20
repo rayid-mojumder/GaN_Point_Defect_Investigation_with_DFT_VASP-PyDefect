@@ -1,0 +1,15 @@
+Ga2N2:
+  energy: -24.30758133
+  source: GaN_mp-804
+Ga4:
+  energy: -11.61300105
+  source: Ga_mp-142
+Mg2:
+  energy: -3.01455505
+  source: Mg_mp-153
+N2:
+  energy: -16.61830641
+  source: mol_N2
+Si2:
+  energy: -10.78628603
+  source: Si_mp-149

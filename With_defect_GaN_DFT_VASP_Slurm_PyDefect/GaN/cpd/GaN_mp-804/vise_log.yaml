@@ -1,0 +1,10 @@
+version: 0.9.0
+task: structure_opt
+xc: pbe
+input_options:
+  kpt_density: 2.5
+  overridden_potcar: {}
+  time_reversal: true
+  band_gap: 1.7264999999999997
+user_incar_settings:
+  ENCUT: 400.0

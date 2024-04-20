@@ -1,0 +1,32 @@
+Job started on p-bc-5028 at Sat Apr 20 16:28:34 EDT 2024
+Start: Sat Apr 20 16:28:35 EDT 2024
+[p-bc-5028:1002099:0:1002099] Caught signal 4 (Illegal instruction: illegal operand)
+srun: error: p-bc-5028: task 0: Exited with exit code 168
+==== backtrace (tid:1002099) ====
+ 0  /lib64/libucs.so.0(ucs_handle_error+0x2dc) [0x155499b7fe4c]
+ 1  /lib64/libucs.so.0(+0x2c02c) [0x155499b8002c]
+ 2  /lib64/libucs.so.0(+0x2c0b3) [0x155499b800b3]
+ 3  /storage/icds/RISE/sw8/vasp-intel-2021.4.0/vasp-6.3.1vtst/bin/vasp_std() [0x423aaf]
+ 4  /storage/icds/RISE/sw8/vasp-intel-2021.4.0/vasp-6.3.1vtst/bin/vasp_std() [0x4233b8]
+ 5  /storage/icds/RISE/sw8/vasp-intel-2021.4.0/vasp-6.3.1vtst/bin/vasp_std() [0x476981]
+ 6  /storage/icds/RISE/sw8/vasp-intel-2021.4.0/vasp-6.3.1vtst/bin/vasp_std() [0x47595f]
+ 7  /storage/icds/RISE/sw8/vasp-intel-2021.4.0/vasp-6.3.1vtst/bin/vasp_std() [0x4e3ea0]
+ 8  /storage/icds/RISE/sw8/vasp-intel-2021.4.0/vasp-6.3.1vtst/bin/vasp_std() [0x1d86bea]
+ 9  /storage/icds/RISE/sw8/vasp-intel-2021.4.0/vasp-6.3.1vtst/bin/vasp_std() [0x41c362]
+10  /lib64/libc.so.6(__libc_start_main+0xe5) [0x1554a3bb9d85]
+11  /storage/icds/RISE/sw8/vasp-intel-2021.4.0/vasp-6.3.1vtst/bin/vasp_std() [0x41c26e]
+=================================
+forrtl: severe (168): Program Exception - illegal instruction
+Image              PC                Routine            Line        Source             
+vasp_std           0000000001F6511B  for__signal_handl     Unknown  Unknown
+libpthread-2.28.s  00001554A42D8CF0  Unknown               Unknown  Unknown
+vasp_std           0000000000423AAF  Unknown               Unknown  Unknown
+vasp_std           00000000004233B8  Unknown               Unknown  Unknown
+vasp_std           0000000000476981  Unknown               Unknown  Unknown
+vasp_std           000000000047595F  Unknown               Unknown  Unknown
+vasp_std           00000000004E3EA0  Unknown               Unknown  Unknown
+vasp_std           0000000001D86BEA  Unknown               Unknown  Unknown
+vasp_std           000000000041C362  Unknown               Unknown  Unknown
+libc-2.28.so       00001554A3BB9D85  __libc_start_main     Unknown  Unknown
+vasp_std           000000000041C26E  Unknown               Unknown  Unknown
+End: Sat Apr 20 16:28:36 EDT 2024

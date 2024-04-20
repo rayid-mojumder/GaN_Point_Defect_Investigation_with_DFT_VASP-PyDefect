@@ -1,0 +1,7 @@
+version: 0.8.1
+task: dielectric_dfpt
+xc: pbe
+input_options:
+  kpt_density: 5.0
+  overridden_potcar: {}
+user_incar_settings: {}

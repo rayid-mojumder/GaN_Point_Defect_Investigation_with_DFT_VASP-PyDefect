@@ -1,0 +1,7 @@
+version: 0.8.1
+task: band
+xc: pbe
+input_options:
+  kpt_density: 5.0
+  overridden_potcar: {}
+user_incar_settings: {}

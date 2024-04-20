@@ -1,0 +1,9 @@
+name: Ga_i1
+charge: 0
+formation_energy: 7.453257812499919
+atom_io:
+  Ga: 1
+energy_corrections:
+  pc term: 0.0
+  alignment term: 0.0
+is_shallow: 
