@@ -455,11 +455,13 @@ scancel --name=GaN_supercell_defect_DOPED
 [mvm7218@submit03 defect]$ for dir in */;do cd $dir; rm -rf *.OUTCAR; cd ..; done
 [mvm7218@submit03 defect]$ for dir in */;do cd $dir; rm -rf *.WAVECAR; cd ..; done
 [mvm7218@submit03 defect]$ for dir in */;do cd $dir; rm -rf *.xml; cd ..; done
+[mvm7218@submit03 defect]$ for dir in */;do cd $dir; rm -rf *.CHGCAR; cd ..; done
+[mvm7218@submit03 defect]$ for dir in */;do cd $dir; sbatch srun.slurm; cd ..; done
+[mvm7218@submit03 defect]$ 
+
+
 
 
 ####################### print .json or .yaml file #################
 pydefect_print ***.json
 pydefect_print ***.yaml
-[mvm7218@submit03 defect]$ for dir in */;do cd $dir; rm -rf *.CHGCAR; cd ..; done
-[mvm7218@submit03 defect]$ for dir in */;do cd $dir; sbatch srun.slurm; cd ..; done
-[mvm7218@submit03 defect]$ 
