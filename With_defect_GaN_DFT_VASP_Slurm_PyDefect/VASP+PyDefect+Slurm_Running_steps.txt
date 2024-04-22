@@ -244,15 +244,18 @@ Step-24: Corrections of defect formation energies in finite-size supercells [cre
   #create VESTA file (defect.vesta) for analyzing the defect structure files [in each defect directory]
   pydefect_util dvf -d *_* #creates file even omitting the directory with ionic convergence = false
 
-*Step-25: Check defect eigenvalues and band-edge states in supercell calculations [Optional Stage]
+Step-25: Check defect eigenvalues and band-edge states in supercell calculations [Optional Stage]
   #defects with (1) deep localized states inside band gap, (2) band edges, (3) without defect states inside the band gap or near band edges
   #analyze the eigenvalues and band-edge states 
     #generates the 'perfect_band_edge_state.json' files to show the information on the eigenvalues and orbital information of the VBM and CBM in the perfect supercell. [parent defect directory]
     pydefect_vasp pbes -d perfect
     #create 'band_edge_orbital_infos.json' files at defect directories [in each defect directories, creates 'eigenvalues.pdf' file]
     pydefect_vasp beoi -d *_* -pbes perfect/perfect_band_edge_state.json  #creates 'eigenvalues.pdf' file
-    #generate the edge_characters.json file with the band edge states (bes) command [in each defect directory, did not work, the next command is skipped]
-    pydefect_vasp bes -d *_*/ -pbes perfect/perfect_band_edge_state.json #similar orbital to the edge are not found.
+          #generate the edge_characters.json file with the band edge states (bes) command [in each defect directory, did not work, the next command is skipped] [one solution is below]
+          pydefect_vasp bes -d *_*/ -pbes perfect/perfect_band_edge_state.json #similar orbital to the edge are not found.
+              #Instead of the above command, can work manually
+              cd Ga_N1_0
+              pydefect bes -d . -pbes ../perfect/perfect_band_edge_state.json
 
 Step-26: Plot defect formation eenergies
   #defect formation energies requires - the band edges, chemical potentials of the competing phases, and total energies of the perfect and defective supercells.
@@ -452,6 +455,11 @@ scancel --name=GaN_supercell_defect_DOPED
 [mvm7218@submit03 defect]$ for dir in */;do cd $dir; rm -rf *.OUTCAR; cd ..; done
 [mvm7218@submit03 defect]$ for dir in */;do cd $dir; rm -rf *.WAVECAR; cd ..; done
 [mvm7218@submit03 defect]$ for dir in */;do cd $dir; rm -rf *.xml; cd ..; done
+
+
+####################### print .json or .yaml file #################
+pydefect_print ***.json
+pydefect_print ***.yaml
 [mvm7218@submit03 defect]$ for dir in */;do cd $dir; rm -rf *.CHGCAR; cd ..; done
 [mvm7218@submit03 defect]$ for dir in */;do cd $dir; sbatch srun.slurm; cd ..; done
 [mvm7218@submit03 defect]$ 
