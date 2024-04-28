@@ -184,6 +184,8 @@ Step-17: Make information on the CPD - creates 'chem_pot_diag.json' and 'target_
   pydefect_print chem_pot_diag.json
   pydefect_print target_vertices.yaml
   pydefect pc
+  #In the cpd.pdf figure, there will be points A, B, etc. meaning which element is Rich. In our case point-A means Ga-rich, point-B means N-rich. Rich means the chemical potential of that one is higher than the other.
+  #Remember this A,B, etc. points. Because these points will be used to plot chemical potential diagram
 
 *Step-18: Check the defect formation energies sooner (avoiding laborious CPD calculation process, steps 11-17) based on the MPD [optional]
   #prepare atom calculation directories [was not able to install BoltzTraP2, skipping step-18]
@@ -254,18 +256,18 @@ Step-23: Parsing supercell calculation results
 
 Step-24: Generate the calc_results.json that contains the first-principles calculation results related to the defect properties
   Generate 'calc_results.json' in all the calculated directories 
-    pydefect_vasp cr -d */ perfect
+  # defect_vasp cr -d */ perfect py
     pydefect_vasp cr -d *_*/ perfect
     cd perfect
     pydefect_vasp cr -d .
 
 Step-24: Corrections of defect formation energies in finite-size supercells [creates 'correction.pdf' in each defect directory]
   #the total energies for charged defects are not properly estimated due to interactions between a defect, its images, and background charge
-  pydefect efnv -d */ -pcr perfect/calc_results.json -u ../unitcell/unitcell.yaml
+  pydefect efnv -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell.yaml
   #create defect_structure_info.json files to analyze the defect local structures [in each defect directory]
   pydefect dsi -d *_*/
   #create VESTA file (defect.vesta) for analyzing the defect structure files [in each defect directory]
-  pydefect_util dvf -d *_* #creates file even omitting the directory with ionic convergence = false
+  pydefect_util dvf -d *_*/ 
 
 *Step-25: Check defect eigenvalues and band-edge states in supercell calculations [Optional Stage]
   #defects with (1) deep localized states inside band gap, (2) band edges, (3) without defect states inside the band gap or near band edges
@@ -274,11 +276,10 @@ Step-24: Corrections of defect formation energies in finite-size supercells [cre
     pydefect_vasp pbes -d perfect
     #create 'band_edge_orbital_infos.json' files at defect directories [in each defect directories, creates 'eigenvalues.pdf' file]
     pydefect_vasp beoi -d *_* -pbes perfect/perfect_band_edge_state.json  #creates 'eigenvalues.pdf' file
-    #generate the edge_characters.json file with the band edge states (bes) command [in each defect directory, did not work, the next command is skipped]
+    #generate the edge_characters.json file with the band edge states (bes) command [in each defect directory] did not work, the next command is skipped]
     pydefect_vasp bes -d *_*/ -pbes perfect/perfect_band_edge_state.json #similar orbital to the edge are not found.
     #Instead of the above command, can work manually
-    cd Ga_N1_0
-    pydefect bes -d . -pbes ../perfect/perfect_band_edge_state.json
+    for dir in */; do cd $dir; pydefect bes -d . -pbes ../perfect/perfect_band_edge_state.json; cd ..; done
 
 Step-26: Plot defect formation eenergies
   #defect formation energies requires - the band edges, chemical potentials of the competing phases, and total energies of the perfect and defective supercells.
@@ -287,8 +288,10 @@ Step-26: Plot defect formation eenergies
   pydefect des -d *_*/ -u ../unitcell/unitcell.yaml -pbes perfect/perfect_band_edge_state.json -t ../cpd/target_vertices.yaml
   #create the calc_summary.json file with the calc_summary (= cs) sub-command [in the parent defect directory]
   pydefect cs -d *_*/ -pcr perfect/calc_results.json
-  #defect formation energies are plotted as a function of the Fermi level with the plot_defect_formation_energy (= pe) sub-command 
-  pydefect pe -d defect_energy_summary.json -l A
+  #defect formation energies are plotted as a function of the Fermi level with the plot_defect_formation_energy (= pe) sub-command. 
+  #Here, after "-l" command, A or B is coming from the cpd diagram. A = Ga-rich, B = N-rich condition
+  pydefect plot_defect_formation_energy -d defect_energy_summary.json -l A --allow_shallow -y -2 10 
+  pydefect plot_defect_formation_energy -d defect_energy_summary.json -l B --allow_shallow -y -2 10
 
 
 ################### check the location of .pmgrc.yaml file #################
