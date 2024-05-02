@@ -222,10 +222,10 @@ Step-21: Decision of interstitial sites
     cp ../unitcell/dos/LOCPOT .
     pydefect_vasp le -v AECCAR{0,2} -i all_electron_charge
   
-  Add the two interstitial sites. Rebuild the 'defect_in.yaml' file - for  adding interstitials to antisite and vacancy defects. 
+  Add the two interstitial sites (-i 1 2). Rebuild the 'defect_in.yaml' file - for  adding interstitials to antisite and vacancy defects. 
   Build the 'defect_in.yaml' file - for  antisite and vacancy defects. Read the 'defect_in.yaml' file and store details for future references. 
   
-    pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 
+    pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 2
     pydefect ds
     pydefect_print defect_in.yaml
 
@@ -260,6 +260,7 @@ Step-24: Generate the calc_results.json that contains the first-principles calcu
     pydefect_vasp cr -d *_*/ perfect
     cd perfect
     pydefect_vasp cr -d .
+    cd ..
 
 Step-24: Corrections of defect formation energies in finite-size supercells [creates 'correction.pdf' in each defect directory]
   #the total energies for charged defects are not properly estimated due to interactions between a defect, its images, and background charge
@@ -279,7 +280,7 @@ Step-24: Corrections of defect formation energies in finite-size supercells [cre
     #generate the edge_characters.json file with the band edge states (bes) command [in each defect directory] did not work, the next command is skipped]
     pydefect_vasp bes -d *_*/ -pbes perfect/perfect_band_edge_state.json #similar orbital to the edge are not found.
     #Instead of the above command, can work manually
-    for dir in */; do cd $dir; pydefect bes -d . -pbes ../perfect/perfect_band_edge_state.json; cd ..; done
+    for dir in *_*/; do cd $dir; pydefect bes -d . -pbes ../perfect/perfect_band_edge_state.json; cd ..; done
 
 Step-26: Plot defect formation eenergies
   #defect formation energies requires - the band edges, chemical potentials of the competing phases, and total energies of the perfect and defective supercells.
