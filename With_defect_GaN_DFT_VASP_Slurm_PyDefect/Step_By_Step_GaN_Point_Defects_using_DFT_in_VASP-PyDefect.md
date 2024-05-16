@@ -301,6 +301,7 @@ cd perfect
 pydefect_vasp cr -d .
 cd ..
 ```
+## Step-12: Check defect eigenvalues and band-edge states in supercell calculations (Optional stage)
 
 
 
