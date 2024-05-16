@@ -15,8 +15,7 @@ This entire step-by-step guide is a simplified and comprehensive guide to genera
 pip install pydefect
 pip install vise
 ```
-## Step-2: Extract POTCAR files in a directory (replace directory with your directory)
-Let's upload the pseudopotential file (potpaw_PBE.54.tar.gz) to a directory, then create a new directory called 'potpaw_PBE.54', and extract the POTCAR files to this new directory
+## Step-2: Extract POTCAR files in a directory (replace directory with your own directory)
 ```bash
 cd /storage/work/mvm7218/
 mkdir potpaw_PBE.54
