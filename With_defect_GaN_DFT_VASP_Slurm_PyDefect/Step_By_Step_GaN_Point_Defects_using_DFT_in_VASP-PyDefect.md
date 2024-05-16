@@ -394,10 +394,10 @@ pydefect pe --help
 
 
 
-++++++++++++++++++++++++
-Some random Stuffs:
-++++++++++++++++++++++++
-* defect_vasp_run.sh:
+
+> Some random Stuffs:
+
+>> defect_vasp_run.sh:
 ```
 for dir in */; do
     cd $dir
@@ -413,7 +413,7 @@ for dir in */; do
     echo "Job $JOB_ID completed."
 done
 ```
-* defect_vasp_run_parallel.sh
+>> defect_vasp_run_parallel.sh
 ```
 for dir in */; do
     cd $dir
@@ -425,7 +425,7 @@ for dir in */; do
     echo "Waiting for job $JOB_ID to complete..."
 done
 ```
-* check_convergence.sh
+>> check_convergence.sh
 ```
 #!/bin/bash
 
@@ -444,7 +444,7 @@ for dir in */; do
   fi
 done
 ```
-* Correct any INCAR settings - remove a line, add new line, etc from command
+>> Correct any INCAR settings - remove a line, add new line, etc from command
 ```
 for i in */;do cd $i; sed -i '35d' INCAR; sed -i '36d' INCAR; echo "EDIFFG  =  -0.01" >> INCAR; echo "NSW = 100" >> INCAR; cd ../;done
 ```
