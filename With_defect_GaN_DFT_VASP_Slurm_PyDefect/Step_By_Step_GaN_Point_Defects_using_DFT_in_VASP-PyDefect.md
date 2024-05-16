@@ -27,7 +27,7 @@ tar -xzvf potpaw_PBE.54.tar.gz -C /storage/work/mvm7218/potpaw_PBE.54
 cd ~
 cd .config
 nano .pmgrc.yaml
-# in cases, the .pmgrc.yaml file could be within.config, in that case use that file [if needed]
+# In cases, the .pmgrc.yaml file could be within.config, in that case use that file using the following code [if needed]
 nano .config/.pmgrc.yaml
 # With the following code, you can see all the .pmgrc.yaml files, and if there is multiple, check and delete the one that is not needed [optional]
 find . -name .pmgrc.yaml -type f -exec readlink -f \{\} \;
