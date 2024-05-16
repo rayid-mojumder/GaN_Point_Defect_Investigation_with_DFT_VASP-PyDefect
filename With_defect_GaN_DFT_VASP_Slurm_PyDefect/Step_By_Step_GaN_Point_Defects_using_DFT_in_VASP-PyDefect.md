@@ -68,7 +68,7 @@ Download the pristine unit cell from the materials project and upload it to the 
 `
 <br> From this point on, I assume you are following the provided directory tree. If that is the case, you can copy and paste the codes into the terminal without any issues. <br>In any case, if you see errors in the directory, please check if your directory path is correctly used or not, and update the code with your own directory path. 
 * Remember, we will consider `/GaN` as our parent directory. Underwhich there will be `/unitcell`, `/cpd`, and `/defect` directories.
-* Whenever there is the command *sbatch some_name.slurm*, this means it's a command used with the Slurm package to execute VASP calculation. If you are using MPI-run or another package, use the execution script for that package. 
+* Whenever there is the command *sbatch some_name.slurm*, this means it's a command used with the Slurm package to execute VASP calculation. If you are using MPI-run or another package, use the execution script for that package.*Download *run.slurm* and *srun.slurm* files from this Github Repo directory - `GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/With_defect_GaN_DFT_VASP_Slurm_PyDefect/` path. Remmeber you need your own values in the slurm script.
 * You will find the batch scripts at the end of this step-by-step. Please update that script based on your system parameters. Upload the slurm scripts (*run.slrum* and *srun.slurm*) in the `/GaN` directory, or you can create it later on.
 Let's calculate the point defects!
  
