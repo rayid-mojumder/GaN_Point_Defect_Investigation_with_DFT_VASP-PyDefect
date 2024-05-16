@@ -22,3 +22,13 @@ mkdir potpaw_PBE.54
 #now upload the potpaw_PBE.54.tar.gz file to /storage/work/mvm7218/
 tar -xzvf potpaw_PBE.54.tar.gz -C /storage/work/mvm7218/potpaw_PBE.54
 ```
+## Step-3: Edit .pmgrc.yaml file and add POTCAR and Materials project API (you need to add your own Materials Project API number)
+```bash
+cd ~
+cd .config
+nano .pmgrc.yaml
+# in cases, the .pmgrc.yaml file could be within.config, in that case use that file [if needed]
+nano .config/.pmgrc.yaml
+# With the following code, you can see all the .pmgrc.yaml files, and if there is multiple, check and delete the one that is not needed [optional]
+find . -name .pmgrc.yaml -type f -exec readlink -f \{\} \;
+```
