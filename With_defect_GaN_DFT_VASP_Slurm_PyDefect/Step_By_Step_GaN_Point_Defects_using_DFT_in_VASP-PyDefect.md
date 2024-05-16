@@ -340,14 +340,23 @@ pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell_hse.
 
 
 ------------ END OF THE CODE ----------------------
-<br>
+
+
+
+
+
+
+
+
+
+
+
 
 * Suggestion-1: While Calculating Formation Energy Diagram (customize parameters from help option):
 ```
 pydefect pe -d defect_energy_summary.json
 pydefect plot_defect_formation_energy -h
 ```
->>
 usage: pydefect plot_defect_formation_energy [-h] -d DEFECT_ENERGY_SUMMARY [--allow_shallow] [--no_corrections] -l LABEL [-y Y_RANGE Y_RANGE] [--no_label_line] [--no_add_charges]
                                              [--plot_all_energies]
 Show and plot defect formation energies.
@@ -365,12 +374,11 @@ optional arguments:
   --no_add_charges      Set the charges not to appear. (default: True)
   --plot_all_energies   Plot energies of all charge states including unstable ones. (default: False)
 ```
-
 Examples:
 pydefect plot_defect_formation_energy -d defect_energy_summary.json -l A --allow_shallow -y -30 10 --no_add_charges
 pydefect plot_defect_formation_energy -d defect_energy_summary.json -l B --allow_shallow -y -30 10 --no_label_line
 pydefect plot_defect_formation_energy -d defect_energy_summary.json -l B --allow_shallow  -y -30 10
-
+```
 
 
 * Suggestion-2: Seeking help in Pydefect:
@@ -448,5 +456,4 @@ done
 ```
 for i in */;do cd $i; sed -i '35d' INCAR; sed -i '36d' INCAR; echo "EDIFFG  =  -0.01" >> INCAR; echo "NSW = 100" >> INCAR; cd ../;done
 ```
-* 
 
