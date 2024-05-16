@@ -8,7 +8,7 @@ This entire step-by-step guide is a simplified and comprehensive guide to genera
 * Basic Workflow (from Official PyDefect site): ![image](https://github.com/rayid-mojumder/GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/assets/39030809/a20eeb7a-2a10-4cfa-94e1-341b1ce64f07)
 * Basic Directory Tree (From Official PyDefect site): ![image](https://github.com/rayid-mojumder/GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/assets/39030809/0e62eff1-ac7e-4db0-8565-a6f873854168)
 
-** *Let's begin....* **
+*Let's begin....*
 
 ##  Step-1: Open Python3 terminal and install PyDefect and VISE
 ```bash
