@@ -40,7 +40,7 @@ With the following code, you can see all the .pmgrc.yaml files, and if there is 
 ```
 find . -name .pmgrc.yaml -type f -exec readlink -f \{\} \;
 ```
-Step-4: Create the required directory tree (change first command to your custom directory)
+## Step-4: Create the required directory tree (change first command to your custom directory)
 ```
 cd /storage/work/
 mkdir GaN
