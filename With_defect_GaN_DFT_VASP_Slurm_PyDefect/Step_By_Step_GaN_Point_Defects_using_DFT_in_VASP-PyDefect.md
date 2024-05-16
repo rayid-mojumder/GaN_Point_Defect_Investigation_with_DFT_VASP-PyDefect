@@ -338,9 +338,10 @@ pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell_hse.
   pydefect plot_defect_formation_energy -d defect_energy_summary.json -l B --allow_shallow -y -2 10
 ```
 
+------------ END OF THE CODE ----------------------
+You can close everything here. But if you want to know more functionalities of VASP please read the suggestions part too. Thank you.
 
-## ------------ END OF THE CODE ----------------------
-
+## ------------ Few Suggestions ----------------------
 
 > Suggestion-1: While Calculating Formation Energy Diagram (customize parameters from help option):
 ```
@@ -380,8 +381,7 @@ pydefect_vasp beoi -h
 pydefect pe --help
 ```
 
-## ------------ END OF SUGGESTIONS ----------------------
-/////////////// THANK YOU VERY MUCH /////////////////
+## ------------ Some random Stuffs ----------------------
 
 > Some random Stuffs:
 
