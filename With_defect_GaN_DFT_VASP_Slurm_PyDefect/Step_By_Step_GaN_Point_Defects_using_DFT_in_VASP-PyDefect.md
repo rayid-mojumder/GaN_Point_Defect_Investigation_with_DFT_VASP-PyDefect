@@ -16,6 +16,7 @@ pip install pydefect
 pip install vise
 ```
 ## Step-2: Extract POTCAR files in a directory (replace directory with your directory)
+Let's create a new directory called 'potpaw_PBE.54' and extract the POTCAR files (that I have) to this mew directory
 ```bash
 cd /storage/work/mvm7218/
 mkdir potpaw_PBE.54
