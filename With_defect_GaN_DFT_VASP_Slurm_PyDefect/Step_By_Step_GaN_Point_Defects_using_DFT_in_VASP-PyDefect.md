@@ -158,8 +158,9 @@ cd ..
 pydefect_vasp u -vb band/vasprun.xml -ob band/OUTCAR -odc dielectric/OUTCAR -odi dielectric/OUTCAR -n GaN
 pydefect_print unitcell.yaml
 ```
+See the `unitcell.yaml` file to get the bandgap value (cbm - vbm = bandgap)
 ## At this point of the simulation, you must do the following - *Modify and Correct the mprester.py and mp_tools.py files* [Must do this additional stage]
-*Download *mprester.py* and *mp_tools.py* files from this Github Repo directory - `GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/With_defect_GaN_DFT_VASP_Slurm_PyDefect/` path
+*Download *mprester.py* and *mp_tools.py* files from this Github Repo directory - `GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/With_defect_GaN_DFT_VASP_Slurm_PyDefect/` path. Or, you can use the updated file here - https://github.com/materialsproject/api/blob/main/mp_api/client/mprester.py
 ```
 #Go to the mprester.py file. In the following command, replace the first '/storage/home/mvm7218/' part with your own directory path
 cd /storage/home/mvm7218/.local/lib/python3.8/site-packages/mp_api/client/mprester.py
@@ -176,7 +177,8 @@ nano mp_tools.py
 ```
 
 ## Step-8: Create competing phases and run VASP calculation of the competing phases
-Create competing phases for GaN. This means all the possible scenarios with these atoms; in this case, there could be - GaN, Ga, and N. 
+If only considerring vacancy and/or intersitials: create competing phases for GaN. This means all the possible scenarios with these atoms; in this case, there could be - GaN, Ga, and N. 
+Move to 'cpd/' directory and run the command
 ```
 cd ~
 # In the following command, replace the first /storage/work/' part with your own directory path
@@ -185,55 +187,82 @@ pydefect_vasp mp -e Ga N --e_above_hull 0.0005
 pydefect_vasp mp -e Ga --e_above_hull 0.0005
 pydefect_vasp mp -e N --e_above_hull 0.0005
 ```
+If also considering impurities: consider the impurities - Mg, Si, all the atoms used in the structure should be added here. 
+```
+  pydefect_vasp mp -e Ga N --e_above_hull 0.0005
+  pydefect_vasp mp -e Ga --e_above_hull 0.0005
+  pydefect_vasp mp -e N --e_above_hull 0.0005
+  pydefect_vasp mp -e Si --e_above_hull 0.0005
+  pydefect_vasp mp -e Mg --e_above_hull 0.0005
+  pydefect_vasp mp -e Ga N Mg Si --e_above_hull 0.0005
+```
 Create VASP files for these competing phases and run the calculation
 ```
 for i in *_*/;do cd $i; vise vs -uis ENCUT 520.0; cd ../;done
 #Copy run.slurm to each competing phase folder and run VASP calculation
 for dir in */;do cd $dir; cp ../../unitcell/band/run.slurm .; sbatch run.slurm; cd ../;done 
 ```
-Generate the *composition_energies.yaml* file and competing phase diagram (CPD). Note, *pydefect_print* command is used to visualize the *.json* or *.yaml* files
+Generate the *composition_energies.yaml* fil - which collects the total energies per calculated formula. Note, *pydefect_print* command is used to visualize the *.json* or *.yaml* files
+```
+pydefect_vasp mce -d */
+pydefect_print composition_energies.yaml
+```
+Create *relative_energies.yaml* and *standard_energies.yaml*. Read the files and store the energies for better understanding and future reference. The first command also generates *convex_hull.pdf* convex hall diagram.
 ```
 pydefect sre
-pydefect_print standard_energies.yaml
-pydefect_print relative_energies.yaml
-pydefect cv -t GaN
-pydefect_print chem_pot_diag.json
-pydefect_print target_vertices.yaml
-pydefect pc
-# In the cpd.pdf figure, A means Ga-rich, B means N-rich
-# You can also check defect formation energies (optional)
-vise_util map -e Ga N
-cd ~
-vise_util map -e Ga N
-
+  pydefect_print standard_energies.yaml
+  pydefect_print relative_energies.yaml
 ```
+Make information on the CPD - creates *chem_pot_diag.json* and *target_vertices.yaml* files. Quickly read the files and its contents. Finally, plot the CPD diagram - creates *cpd.pdf*
+```
+  pydefect cv -t GaN
+  pydefect_print chem_pot_diag.json
+  pydefect_print target_vertices.yaml
+  pydefect pc
+```
+* In the *cpd.pdf* plot, there will be points A, B, etc. meaning which element is Rich. In our case point-A means Ga-rich, point-B means N-rich. Rich means the chemical potential of that one is higher than the other.
+* Remember this A,B, etc. points. Because these points will be used to plot chemical potential diagram (CPD)
+
 To know how to read the CPD diagram and other diagrams - 
 *Download and use the file on this Github Repo directory - `GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/With_defect_GaN_DFT_VASP_Slurm_PyDefect/GaN_Point_Defect_Presentation.pptx`
 
-## Step-9: Creating supercell files and the required defect types and states
+## Step-9: Creating supercell files and incorporate the required defect types and states
 Create Supercell structure of the relaxed unit cell
 ```
 cd ../defect
 pydefect s -p ../unitcell/structure_opt/POSCAR
 pydefect_print supercell_info.json
+# If one wants to know the conventional cell run the following (optional)
+# vise si -p ../unitcell/structure_opt/POSCAR -c
 ```
-Incorporate vacancy defects
+Incorporate defects
 ```
 pydefect ds
 ```
-Incorporate intersitials defects. This needs AECCAR0, AECCAR1, AECCAR2, and LOCPOT files generated by DOS calculation of the unit cell. Follow the following commands:
+Incorporate impurity defects. I am using substitutional defect species (n-type: Si, p-type: Mg).
+```
+pydefect ds
+pydefect ds -d Si Mg
+#If needed you can change the oxidation states of a material. For instance to add +4 oxidation state to Si you can use:
+#pydefect ds --oxi_states Si 4
+pydefect_print defect_in.yaml
+```
+Incorporate intersitials defects. Generate volumetric data, e.g., AECCAR and LOCPOT, based on the standardized primitive cell, already done in DOS calculation. Get AECCAR0, AECCAR1, AECCAR2, and LOCPOT files generated by DOS calculation of the unit cell. See the local minima of the charge density. This creates *volumetric_data_local_extrema.json*
+Follow the following commands:
 ```
 cp ../unitcell/dos/AECCAR0 .
 cp ../unitcell/dos/AECCAR1 .
 cp ../unitcell/dos/AECCAR2 .
 cp ../unitcell/dos/LOCPOT .
 pydefect_vasp le -v AECCAR{0,2} -i all_electron_charge
-# in the following line: - i 1 2 means two intersititals
+```
+If we are using two interstitial sites, use this part -> -i 1 2. Then, Rebuild the *defect_in.yaml* file - for  adding interstitials to antisite and vacancy defects.  Then, build the *defect_in.yaml* file - for  antisite and vacancy defects. Read the *defect_in.yaml* file and store details for future reference.
+```
 pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 2
 pydefect ds
 pydefect_print defect_in.yaml
 ```
-(optional)
+(optional) <start>
 If does not work (and receive NotPrimitiveError, follow this:
     - replace the value of the CONTCAR file in '/unitcell/structure_opt/' file with 'Unitcell in the supercell_info.json'
     ```
@@ -242,31 +271,34 @@ If does not work (and receive NotPrimitiveError, follow this:
     ```
   - If the input structure is different from the standardized primitive cell, NotPrimitiveError is raised
   - To pop the interstitial sites, use>> pydefect pi -i 1 -s supercell_info.json
-<br>
-Incorporate impurity defects. I am using Si and Mg type p-type and n-type dopants.
-```
-pydefect ds
-pydefect ds -d Si Mg
-#If needed you can change the oxidation states of a material. For instance to add +4 oxidation state to Si you can use:
-#pydefect ds --oxi_states Si 4
-pydefect_print defect_in.yaml
-```
+<end>
+
 ## Step-10: Create Point-defect Supercell directories and run VASP calculation for defect-induced supercells
+The following commands create *defect_entry.json* file in each directory. When required, go to the specific defect directory and read and store the data for future reference and analysis. Copy the perfect supercell structure to the  `/perfect/` folder.
 ```
 pydefect_vasp de
 cp SPOSCAR ./perfect/POSCAR
 pydefect_print defect_entry.json
+#if required, run the above last command in each directory to get that specific defect supercell info
 ```
-Copy *srun.slurm* -supercell run.slurm scripts and run the defect-induced supercell calculation on VASP. Find the *srun.slrum* file on the later parts:
+```
+(optional)       
+#If we want to treat complex defects run the following command
+pydefect_vasp_util de -d . -p ../perfect/POSCAR -n complex_defect
+```
+Copy *srun.slurm* -supercell run.slurm scripts and run the defect-induced supercell calculation on VASP. Find the *srun.slrum* file on the later parts. Recommendation: use 4 CPU, 256 GB ram, 32 tasks per cpu:
 ```
 for i in */;do cd $i; vise vs -t defect -uis ENCUT 520.0 NSW 140 NCORE 32 EDIFFG -0.03; cd ../;done
 for i in */;do cd $i; cp /storage/work/GaN/srun.slurm .; cd ../;done
 for dir in */;do cd $dir; sbatch srun.slurm; cd ..; done
 ```
-Parse the defect-induced supercell calculation results:
-for i in */;do cd $i; vise vs -t defect -uis ENCUT 520.0 NSW 140 NCORE 32 EDIFFG -0.03; cd ../;done
-for i in */;do cd $i; cp /storage/work/mvm7218/Slurm/srun.slurm .; cd ../;done
-for dir in */;do cd $dir; sbatch srun.slurm; cd ..; done
+## Step-11: Parse the defect-induced supercell calculation results
+Generate the *calc_results.json* that contains the first-principles calculation results related to the defect properties. Generate *calc_results.json* file in all the calculated directories 
+```
+pydefect_vasp cr -d *_*/ perfect
+cd perfect
+pydefect_vasp cr -d .
+cd ..
 ```
 
 
