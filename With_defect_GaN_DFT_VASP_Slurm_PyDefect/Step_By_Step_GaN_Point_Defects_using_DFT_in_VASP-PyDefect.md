@@ -40,3 +40,18 @@ With the following code, you can see all the .pmgrc.yaml files, and if there is 
 ```
 find . -name .pmgrc.yaml -type f -exec readlink -f \{\} \;
 ```
+Step-4: Create the required directory tree (change first command to your custom directory)
+```
+cd /storage/work/
+mkdir GaN
+cd GaN
+mkdir unitcell
+mkdir unitcell/structure_opt
+mkdir unitcell/band
+mkdir unitcell/dielectric
+mkdir unitcell/dos
+mkdir unitcell/relax
+mkdir cpd
+mkdir defect
+mkdir defect/perfect
+```
