@@ -347,6 +347,7 @@ pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell_hse.
 pydefect pe -d defect_energy_summary.json
 pydefect plot_defect_formation_energy -h
 ```
+>>
 usage: pydefect plot_defect_formation_energy [-h] -d DEFECT_ENERGY_SUMMARY [--allow_shallow] [--no_corrections] -l LABEL [-y Y_RANGE Y_RANGE] [--no_label_line] [--no_add_charges]
                                              [--plot_all_energies]
 Show and plot defect formation energies.
@@ -363,7 +364,7 @@ optional arguments:
   --no_label_line       Set the labels not to locate on the lines. (default: True)
   --no_add_charges      Set the charges not to appear. (default: True)
   --plot_all_energies   Plot energies of all charge states including unstable ones. (default: False)
-
+```
 
 Examples:
 pydefect plot_defect_formation_energy -d defect_energy_summary.json -l A --allow_shallow -y -30 10 --no_add_charges
