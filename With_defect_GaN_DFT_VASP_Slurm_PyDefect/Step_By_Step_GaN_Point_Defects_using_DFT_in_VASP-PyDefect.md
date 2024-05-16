@@ -10,8 +10,8 @@ This entire step-by-step guide is a simplified and comprehensive guide to genera
 Let's begin....
 
 ##  Step-1: Install Python3 and necessary packages
-`
+```bash
 pip install pydefect
 pip install vise
-`
+```
 
