@@ -348,22 +348,9 @@ You can close everything here. But if you want to know more functionalities of V
 pydefect pe -d defect_energy_summary.json
 pydefect plot_defect_formation_energy -h
 ```
-usage: pydefect plot_defect_formation_energy [-h] -d DEFECT_ENERGY_SUMMARY [--allow_shallow] [--no_corrections] -l LABEL [-y Y_RANGE Y_RANGE] [--no_label_line] [--no_add_charges]
-                                             [--plot_all_energies]
-Show and plot defect formation energies.
-optional arguments:
-  -h, --help            show this help message and exit
-  -d DEFECT_ENERGY_SUMMARY, --defect_energy_summary DEFECT_ENERGY_SUMMARY
-                        defect_energy_summary.json file path. (default: None)
-  --allow_shallow       Set when the energies of shallow defects are allowed. (default: False)
-  --no_corrections      Set when corrections are switched off. (default: True)
-  -l LABEL, --label LABEL
-                        Label in the chemical potential diagram (default: None)
-  -y Y_RANGE Y_RANGE, --y_range Y_RANGE Y_RANGE
-                        Energy range in y-axis (default: None)
-  --no_label_line       Set the labels not to locate on the lines. (default: True)
-  --no_add_charges      Set the charges not to appear. (default: True)
-  --plot_all_energies   Plot energies of all charge states including unstable ones. (default: False)
+This gives the output:
+![image](https://github.com/rayid-mojumder/GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/assets/39030809/ef41c17e-881d-4bef-afe5-f3a6e5a50b0c)
+
 ```
 Examples:
 pydefect plot_defect_formation_energy -d defect_energy_summary.json -l A --allow_shallow -y -30 10 --no_add_charges
