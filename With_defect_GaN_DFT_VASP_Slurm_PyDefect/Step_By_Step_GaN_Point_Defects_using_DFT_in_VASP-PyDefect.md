@@ -15,6 +15,12 @@ This entire step-by-step guide is a simplified and comprehensive guide to genera
 pip install pydefect
 pip install vise
 ```
+If you need to upgrade the package, use:
+```
+pip install --upgrade pydefect
+pip install --upgrade vise
+pip install --upgrade mp-api
+```
 ## Step-2: Extract POTCAR files in a directory (replace directory with your own directory)
 ```bash
 cd /storage/work/mvm7218/
@@ -144,6 +150,21 @@ touch run.slurm
 cp ../relax/CONTCAR POSCAR
 cp ../relax/run.slurm run.slurm
 ```
+## Step-7: Gather unit cell calculation results for future reference
+```
+cd ..
+pydefect_vasp u -vb band/vasprun.xml -ob band/OUTCAR -odc dielectric/OUTCAR -odi dielectric/OUTCAR -n GaN
+pydefect_print unitcell.yaml
+```
+## At this point of simulation, you must do the following - *Modify and Correct the mprester.py and mp_tools.py files*
+*Download *mprester.py* and *mp_tools.py* files from this Github Repo directory - `GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/With_defect_GaN_DFT_VASP_Slurm_PyDefect/` path
+#Go to the mprester.py file  and then replace the contents with the contents of the downloaded one. In the following command replace the first '/storage/home/mvm7218/' part with your own directory path
+cd /storage/home/mvm7218/.local/lib/python3.8/site-packages/mp_api/client/mprester.py
+# Replace the *mprester.py* file's content with the downloaded one
+nano mprester.py
+# Find the *DEFAULT_API_KEY* line and hardcode the materials project key to the default API key (like the following). Here 'ksrEbuvP0ucRZAas11zIz8y7lii15gpy' is my own Materials Project API key.
+# DEFAULT_API_KEY = environ.get("MP_API_KEY", "ksrEbuvP0ucRZAas11zIz8y7lii15gpy")
+
 
 
 
