@@ -302,8 +302,24 @@ pydefect_vasp cr -d .
 cd ..
 ```
 ## Step-12: Check defect eigenvalues and band-edge states in supercell calculations (Optional stage)
+* Defects with (1) deep localized states inside band gap, (2) band edges, (3) without defect states inside the band gap or near band edges
+* Analyze the eigenvalues and band-edge states 
+- Generates the *perfect_band_edge_state.json* files to show the information on the eigenvalues and orbital information of the VBM and CBM in the perfect supercell. [parent defect directory]
+```
+  pydefect_vasp pbes -d perfect
+```
+- Create *band_edge_orbital_infos.json* files at defect directories [in each defect directories, creates *eigenvalues.pdf* file]
+```
+  pydefect_vasp beoi -d *_* -pbes perfect/perfect_band_edge_state.json
+```
+- Generate the *edge_characters.json* file with the band edge states (bes) command [in each defect directory]
+```
+pydefect_vasp bes -d *_*/ -pbes perfect/perfect_band_edge_state.json 
+# If the previous command give error, instead of the above command, it can work manually by the following command
+for dir in *_*/; do cd $dir; pydefect bes -d . -pbes ../perfect/perfect_band_edge_state.json; cd ..; done
+```
 
-
+## Step-13: Plot defect formation energy diagram
 
 
 
