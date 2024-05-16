@@ -65,8 +65,8 @@ Download the pristine unit cell from the materials project and upload it to the 
 * Whenever there is the command *sbatch some_name.slurm*, this means it's a command used with the Slurm package to execute VASP calculation. If you are using MPI-run or another package, use the execution script for that package.
 * You will find the batch scripts at the end of this step-by-step. Please update that script based on your system parameters. Upload the slurm packages in the `/GaN` directory, or you can create it later on.
 Let's calculate the point defects!
-
-## Step-6: Relax Calculation
+ 
+## Step-6: Relax Calculation and saving relaxed POSCAR file for further calculations
 ```
 cd unitcell/structure_opt
 vise vs
