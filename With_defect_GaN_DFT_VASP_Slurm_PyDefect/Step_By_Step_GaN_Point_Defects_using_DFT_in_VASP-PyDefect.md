@@ -340,10 +340,7 @@ pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell_hse.
 
 
 ------------ END OF THE CODE ----------------------
-
-
-
-
+<br>
 
 * Suggestion-1: While Calculating Formation Energy Diagram (customize parameters from help option):
 ```
