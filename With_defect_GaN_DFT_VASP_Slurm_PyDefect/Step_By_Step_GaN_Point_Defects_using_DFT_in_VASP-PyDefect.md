@@ -320,13 +320,24 @@ for dir in *_*/; do cd $dir; pydefect bes -d . -pbes ../perfect/perfect_band_edg
 ```
 
 ## Step-13: Plot defect formation energy diagram
-
-
-
-
-
-
-
+* Defect formation energies require - the band edges, chemical potentials of the competing phases, and total energies of the perfect and defective supercells
+```
+pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell_hse.yaml -s ../cpd/standard_energies.yaml
+```
+* Create a *defect_energy_summary.json* file with the defect_energy_summary (= des) sub-command. [in the parent defect folder]
+```
+  pydefect des -d *_*/ -u ../unitcell/unitcell_hse.yaml -pbes perfect/perfect_band_edge_state.json -t ../cpd/target_vertices.yaml
+```
+* Create the *calc_summary.json* file with the calc_summary (= cs) sub-command [in the parent defect directory]
+```
+  pydefect cs -d *_*/ -pcr perfect/calc_results.json
+```
+* Defect formation energies are plotted as a function of the Fermi level with the plot_defect_formation_energy (= pe) sub-command.
+* Here, after "-l" command, A or B is coming from the cpd diagram. A = Ga-rich, B = N-rich condition
+```
+  pydefect plot_defect_formation_energy -d defect_energy_summary.json -l A --allow_shallow -y -2 10 
+  pydefect plot_defect_formation_energy -d defect_energy_summary.json -l B --allow_shallow -y -2 10
+```
 
 
 Sbatch scripts (run.slurm): (line-66)
