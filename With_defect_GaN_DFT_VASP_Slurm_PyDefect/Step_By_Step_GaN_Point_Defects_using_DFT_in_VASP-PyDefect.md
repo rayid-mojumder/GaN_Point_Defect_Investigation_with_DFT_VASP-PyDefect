@@ -29,8 +29,8 @@ cd .config
 nano .pmgrc.yaml
 # In cases, the .pmgrc.yaml file could be within.config, in that case use that file using the following code [if needed]
 nano .config/.pmgrc.yaml
-# The above two code will open .pmgrc.yaml file add the POTCAR directory and API in there, for instance, my info is -
 ```
+The above two codes will open .pmgrc.yaml file add the Functional type, POTCAR directory, and materials project API in there, and save it. For instance, my info is -
 ```
 PMG_DEFAULT_FUNCTIONAL: PBE_54
 PMG_MAPI_KEY: ksrEbuvP0ucRZAas11zIz8y7lii15gpy
