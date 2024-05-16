@@ -22,7 +22,7 @@ mkdir potpaw_PBE.54
 #now upload the potpaw_PBE.54.tar.gz file to /storage/work/mvm7218/
 tar -xzvf potpaw_PBE.54.tar.gz -C /storage/work/mvm7218/potpaw_PBE.54
 ```
-## Step-3: Edit .pmgrc.yaml file and add POTCAR and Materials project API (you need to add your own Materials Project API number)
+## Step-3: Edit *.pmgrc.yaml* file and add POTCAR and Materials project API (you need to add your own Materials Project API number)
 ```bash
 cd ~
 cd .config
@@ -30,13 +30,13 @@ nano .pmgrc.yaml
 # In cases, the .pmgrc.yaml file could be within.config, in that case use that file using the following code [if needed]
 nano .config/.pmgrc.yaml
 ```
-The above two codes will open .pmgrc.yaml file. Now, add the functional type, POTCAR directory, and materials project API in the text file and save it. For instance, my info is below. Please note that this is not a bash command.
+The above two codes will open *.pmgrc.yaml* file. Now, add the functional type, POTCAR directory, and materials project API in the text file and save it. For instance, my info is below. Please note that this is not a bash command.
 ```
 PMG_DEFAULT_FUNCTIONAL: PBE_54
 PMG_MAPI_KEY: ksrEbuvP0ucRZAas11zIz8y7lii15gpy
 PMG_VASP_PSP_DIR: /storage/work/mvm7218/
 ```
-With the following code, you can see all the .pmgrc.yaml files, and if there is multiple, check and delete the one that is not needed [optional]
+With the following code, you can see all the *.pmgrc.yaml* files, and if there is multiple, check and delete the one that is not needed [optional]
 ```
 find . -name .pmgrc.yaml -type f -exec readlink -f \{\} \;
 ```
@@ -61,7 +61,7 @@ mkdir defect/perfect
 Download the pristine unit cell from the materials project and upload it to the *unitcell/structure_opt/* directory
 `
 <br> From this point on, I assume you are following the provided directory tree. If that is the case, you can copy and paste the codes into the terminal without any issues. <br>In any case, if you see errors in the directory, please check if your directory path is correctly used or not, and update the code with your own directory path. 
-* Remember, we will consider */GaN* as our parent directory. Underwhich there will be */unitcell*, */cpd*, and */defect* directories.
+* Remember, we will consider '*/GaN*' as our parent directory. Underwhich there will be '*/unitcell*', '*/cpd*', and '*/defect*' directories.
 * Whenever there is the command *batch some_name.slurm*, this means it's a command used with the Slurm package to execute VASP calculation. If you are using MPI-run or another package, use the execution script for that package.
 * You will find the batch scripts at the end of this step-by-step. Please update that script based on your system parameters.
 Let's calculate the point defects!
