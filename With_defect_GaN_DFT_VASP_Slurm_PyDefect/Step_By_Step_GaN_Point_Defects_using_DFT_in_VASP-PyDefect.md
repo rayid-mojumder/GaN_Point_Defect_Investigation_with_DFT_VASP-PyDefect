@@ -5,8 +5,10 @@ This entire step-by-step guide is a simplified and comprehensive guide to genera
 * *You need a Linux environment (could be a local PC or supercomputing server) and already installed Python3 (also Pip) and VASP*.
 * Also, you need to have a Pseudopotential file. In my case, I have *potpaw_PBE.54.tar.gz*
 * I am using Slurm to run the package on the remote server; if you are using MPIrun or something else, please adjust the VASP run scripts. Either way, you can follow this guide.
-* Basic Workflow (from Official PyDefect site): ![image](https://github.com/rayid-mojumder/GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/assets/39030809/a20eeb7a-2a10-4cfa-94e1-341b1ce64f07)
-* Basic Directory Tree (From Official PyDefect site): ![image](https://github.com/rayid-mojumder/GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/assets/39030809/0e62eff1-ac7e-4db0-8565-a6f873854168)
+* Basic Workflow (from Official PyDefect site):
+  ![image](https://github.com/rayid-mojumder/GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/assets/39030809/a20eeb7a-2a10-4cfa-94e1-341b1ce64f07)
+* Basic Directory Tree (From Official PyDefect site):
+  ![image](https://github.com/rayid-mojumder/GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/assets/39030809/0e62eff1-ac7e-4db0-8565-a6f873854168)
 
 *Let's begin....*
 
