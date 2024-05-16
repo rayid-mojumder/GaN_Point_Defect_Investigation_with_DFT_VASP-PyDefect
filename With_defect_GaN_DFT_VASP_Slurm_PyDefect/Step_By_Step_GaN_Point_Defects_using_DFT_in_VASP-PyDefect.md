@@ -59,7 +59,7 @@ mkdir defect/perfect
 `
 Download the pristine unit cell from the materials project and upload it to the *unitcell/structure_opt/* directory
 `
-From this point on, I assume you are following the provided directory tree. If that is the case, you can copy and paste the codes into the terminal without any issues. In any case, if you see errors in the directory, please check if your directory path is correctly used or not and update the code with your own directory path. Let's calculate the point defects!
+<br> From this point on, I assume you are following the provided directory tree. If that is the case, you can copy and paste the codes into the terminal without any issues. In any case, if you see errors in the directory, please check if your directory path is correctly used or not and update the code with your own directory path. Let's calculate the point defects!
 
 ## Step-6: Relax Calculation
 ```
