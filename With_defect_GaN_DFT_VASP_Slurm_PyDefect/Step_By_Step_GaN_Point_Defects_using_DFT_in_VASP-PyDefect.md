@@ -64,7 +64,7 @@ Download the pristine unit cell from the materials project and upload it to the 
 * Remember, we will consider */GaN* as our parent directory. Underwhich there will be */unitcell*, */cpd*, and */defect* directories.
 * Whenever there is the command *batch some_name.slurm*, this means it's a command used with the Slurm package to execute VASP calculation. If you are using MPI-run or another package, use the execution script for that package.
 * You will find the batch scripts at the end of this step-by-step. Please update that script based on your system parameters.
-* <br>Let's calculate the point defects!
+Let's calculate the point defects!
 
 ## Step-6: Relax Calculation
 ```
