@@ -11,5 +11,7 @@ Let's begin....
 
 ##  Step-1: Install Python3 and necessary packages
 `
-
+pip install pydefect
+pip install vise
+`
 
