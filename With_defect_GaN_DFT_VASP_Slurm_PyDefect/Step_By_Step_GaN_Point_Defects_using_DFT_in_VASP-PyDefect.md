@@ -68,8 +68,7 @@ Download the pristine unit cell from the materials project and upload it to the 
 `
 <br> From this point on, I assume you are following the provided directory tree. If that is the case, you can copy and paste the codes into the terminal without any issues. <br>In any case, if you see errors in the directory, please check if your directory path is correctly used or not, and update the code with your own directory path. 
 * Remember, we will consider `/GaN` as our parent directory. Underwhich there will be `/unitcell`, `/cpd`, and `/defect` directories.
-* Whenever there is the command *sbatch some_name.slurm*, this means it's a command used with the Slurm package to execute VASP calculation. If you are using MPI-run or another package, use the execution script for that package.*Download *run.slurm* and *srun.slurm* files from this Github Repo directory - `GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/With_defect_GaN_DFT_VASP_Slurm_PyDefect/` path. Remmeber you need your own values in the slurm script.
-* You will find the batch scripts at the end of this step-by-step. Please update that script based on your system parameters. Upload the slurm scripts (*run.slrum* and *srun.slurm*) in the `/GaN` directory, or you can create it later on.
+* Whenever there is the command *sbatch some_name.slurm*, this means it's a command used with the Slurm package to execute VASP calculation. If you are using MPI-run or another package, use the execution script for that package.*Download *run.slurm* and *srun.slurm* files from this Github Repo directory - `GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/With_defect_GaN_DFT_VASP_Slurm_PyDefect/` path. Please update that script based on your system parameters. Upload the slurm scripts (*run.slrum* and *srun.slurm*) in the `/GaN` directory, or you can create it later on.
 Let's calculate the point defects!
  
 ## Step-6: Relax Calculation and save the relaxed POSCAR file for further calculations
@@ -287,7 +286,7 @@ pydefect_print defect_entry.json
 #If we want to treat complex defects run the following command
 pydefect_vasp_util de -d . -p ../perfect/POSCAR -n complex_defect
 ```
-Copy *srun.slurm* -supercell run.slurm scripts and run the defect-induced supercell calculation on VASP. Find the *srun.slrum* file on the later parts. Recommendation: use 4 CPU, 256 GB ram, 32 tasks per cpu:
+Copy *srun.slurm* -supercell run.slurm scripts and run the defect-induced supercell calculation on VASP. Recommendation: use 4 CPU, 256 GB ram, 32 tasks per cpu:
 ```
 for i in */;do cd $i; vise vs -t defect -uis ENCUT 520.0 NSW 140 NCORE 32 EDIFFG -0.03; cd ../;done
 for i in */;do cd $i; cp /storage/work/GaN/srun.slurm .; cd ../;done
@@ -340,5 +339,116 @@ pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell_hse.
 ```
 
 
-Sbatch scripts (run.slurm): (line-66)
-Sbatch scripts (srun.slurm): (line-249)
+------------ END OF THE CODE ----------------------
+
+
+
+
+
+* Suggestion-1: While Calculating Formation Energy Diagram (customize parameters from help option):
+```
+pydefect pe -d defect_energy_summary.json
+pydefect plot_defect_formation_energy -h
+```
+usage: pydefect plot_defect_formation_energy [-h] -d DEFECT_ENERGY_SUMMARY [--allow_shallow] [--no_corrections] -l LABEL [-y Y_RANGE Y_RANGE] [--no_label_line] [--no_add_charges]
+                                             [--plot_all_energies]
+Show and plot defect formation energies.
+optional arguments:
+  -h, --help            show this help message and exit
+  -d DEFECT_ENERGY_SUMMARY, --defect_energy_summary DEFECT_ENERGY_SUMMARY
+                        defect_energy_summary.json file path. (default: None)
+  --allow_shallow       Set when the energies of shallow defects are allowed. (default: False)
+  --no_corrections      Set when corrections are switched off. (default: True)
+  -l LABEL, --label LABEL
+                        Label in the chemical potential diagram (default: None)
+  -y Y_RANGE Y_RANGE, --y_range Y_RANGE Y_RANGE
+                        Energy range in y-axis (default: None)
+  --no_label_line       Set the labels not to locate on the lines. (default: True)
+  --no_add_charges      Set the charges not to appear. (default: True)
+  --plot_all_energies   Plot energies of all charge states including unstable ones. (default: False)
+
+
+Examples:
+pydefect plot_defect_formation_energy -d defect_energy_summary.json -l A --allow_shallow -y -30 10 --no_add_charges
+pydefect plot_defect_formation_energy -d defect_energy_summary.json -l B --allow_shallow -y -30 10 --no_label_line
+pydefect plot_defect_formation_energy -d defect_energy_summary.json -l B --allow_shallow  -y -30 10
+
+
+
+* Suggestion-2: Seeking help in Pydefect:
+pydefect_vasp [the_command_key] -h 
+pydefect_vasp [the_command_key] --help
+
+Examples:
+```
+pydefect_vasp beoi -h
+pydefect pe --help
+```
+
+
+
+
+------------ END OF SUGGESTIONS ----------------------
+/////////////// THANK YOU VERY MUCH /////////////////
+
+
+
+
+
+
+++++++++++++++++++++++++
+Some random Stuffs:
+++++++++++++++++++++++++
+* defect_vasp_run.sh:
+```
+for dir in */; do
+    cd $dir
+    # Submit the job and capture the job ID
+    JOB_ID=$(sbatch srun.slurm | awk '{print $4}')
+    cd ..
+
+    # Wait for the job to complete
+    echo "Waiting for job $JOB_ID to complete..."
+    while squeue | grep -q "$JOB_ID"; do
+        sleep 10  # Check every 10 seconds
+    done
+    echo "Job $JOB_ID completed."
+done
+```
+* defect_vasp_run_parallel.sh
+```
+for dir in */; do
+    cd $dir
+    # Submit the job and capture the job ID
+    JOB_ID=$(sbatch srun.slurm | awk '{print $4}')
+    cd ..
+
+    # Wait for the job to complete
+    echo "Waiting for job $JOB_ID to complete..."
+done
+```
+* check_convergence.sh
+```
+#!/bin/bash
+
+# Loop through directories
+for dir in */; do
+  # Check if OUTCAR exists
+  if [[ -f "${dir}/OUTCAR" ]]; then
+    # Check for ionic convergence
+    if grep -q "reached required accuracy - stopping structural energy minimisation" "${dir}/OUTCAR"; then
+      echo "Ionic convergence achieved in ${dir}"
+    else
+      echo "Ionic convergence NOT achieved in ${dir}"
+    fi
+  else
+    echo "OUTCAR not found in ${dir}"
+  fi
+done
+```
+* Correct any INCAR settings - remove a line, add new line, etc from command
+```
+for i in */;do cd $i; sed -i '35d' INCAR; sed -i '36d' INCAR; echo "EDIFFG  =  -0.01" >> INCAR; echo "NSW = 100" >> INCAR; cd ../;done
+```
+* 
+
