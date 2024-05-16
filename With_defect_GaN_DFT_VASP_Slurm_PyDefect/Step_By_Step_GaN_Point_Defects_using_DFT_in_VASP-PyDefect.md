@@ -159,7 +159,8 @@ pydefect_vasp u -vb band/vasprun.xml -ob band/OUTCAR -odc dielectric/OUTCAR -odi
 pydefect_print unitcell.yaml
 ```
 See the `unitcell.yaml` file to get the bandgap value (cbm - vbm = bandgap)
-### At this point of the simulation, you must do the following - *Modify and Correct the mprester.py and mp_tools.py files* [Must do this additional stage]
+### At this point of the simulation, you must do the following 
+*Modify and Correct the mprester.py and mp_tools.py files* [Must do this additional stage]
 *Download *mprester.py* and *mp_tools.py* files from this Github Repo directory - `GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/With_defect_GaN_DFT_VASP_Slurm_PyDefect/` path. Or, you can use the updated file here - https://github.com/materialsproject/api/blob/main/mp_api/client/mprester.py
 ```
 #Go to the mprester.py file. In the following command, replace the first '/storage/home/mvm7218/' part with your own directory path
