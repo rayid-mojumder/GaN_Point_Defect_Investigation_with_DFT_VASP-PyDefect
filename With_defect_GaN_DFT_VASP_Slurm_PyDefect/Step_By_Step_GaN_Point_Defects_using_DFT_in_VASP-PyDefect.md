@@ -9,7 +9,7 @@ This entire step-by-step guide is a simplified and comprehensive guide to genera
 
 Let's begin....
 
-##  Step-1: Install Python3 and necessary packages
+##  Step-1: Open Python3 terminal and install PyDefect and VISE
 ```bash
 pip install pydefect
 pip install vise
