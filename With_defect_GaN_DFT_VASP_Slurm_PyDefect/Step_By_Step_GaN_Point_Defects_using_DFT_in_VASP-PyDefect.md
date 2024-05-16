@@ -342,17 +342,7 @@ pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell_hse.
 ------------ END OF THE CODE ----------------------
 
 
-
-
-
-
-
-
-
-
-
-
-* Suggestion-1: While Calculating Formation Energy Diagram (customize parameters from help option):
+> Suggestion-1: While Calculating Formation Energy Diagram (customize parameters from help option):
 ```
 pydefect pe -d defect_energy_summary.json
 pydefect plot_defect_formation_energy -h
@@ -380,8 +370,7 @@ pydefect plot_defect_formation_energy -d defect_energy_summary.json -l B --allow
 pydefect plot_defect_formation_energy -d defect_energy_summary.json -l B --allow_shallow  -y -30 10
 ```
 
-
-* Suggestion-2: Seeking help in Pydefect:
+> Suggestion-2: Seeking help in Pydefect:
 pydefect_vasp [the_command_key] -h 
 pydefect_vasp [the_command_key] --help
 
@@ -391,17 +380,8 @@ pydefect_vasp beoi -h
 pydefect pe --help
 ```
 
-
-
-
 ------------ END OF SUGGESTIONS ----------------------
 /////////////// THANK YOU VERY MUCH /////////////////
-
-
-
-
-
-
 
 > Some random Stuffs:
 
