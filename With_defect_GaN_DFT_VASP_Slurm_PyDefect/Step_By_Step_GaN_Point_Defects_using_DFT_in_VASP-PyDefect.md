@@ -228,10 +228,21 @@ cp ../unitcell/dos/AECCAR1 .
 cp ../unitcell/dos/AECCAR2 .
 cp ../unitcell/dos/LOCPOT .
 pydefect_vasp le -v AECCAR{0,2} -i all_electron_charge
+# in the following line: - i 1 2 means two intersititals
 pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 2
 pydefect ds
 pydefect_print defect_in.yaml
 ```
+(optional)
+If does not work (and receive NotPrimitiveError, follow this:
+    - replace the value of the CONTCAR file in '/unitcell/structure_opt/' file with 'Unitcell in the supercell_info.json'
+    ```
+    pydefect s -p ../unitcell/structure_opt/CONTCAR
+    pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 2  
+    ```
+  - If the input structure is different from the standardized primitive cell, NotPrimitiveError is raised
+  - To pop the interstitial sites, use>> pydefect pi -i 1 -s supercell_info.json
+<br>
 Incorporate impurity defects. I am using Si and Mg type p-type and n-type dopants.
 ```
 pydefect ds
