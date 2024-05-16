@@ -36,7 +36,7 @@ PMG_DEFAULT_FUNCTIONAL: PBE_54
 PMG_MAPI_KEY: ksrEbuvP0ucRZAas11zIz8y7lii15gpy
 PMG_VASP_PSP_DIR: /storage/work/mvm7218/
 ```
-# With the following code, you can see all the .pmgrc.yaml files, and if there is multiple, check and delete the one that is not needed [optional]
+With the following code, you can see all the .pmgrc.yaml files, and if there is multiple, check and delete the one that is not needed [optional]
 ```
 find . -name .pmgrc.yaml -type f -exec readlink -f \{\} \;
 ```
