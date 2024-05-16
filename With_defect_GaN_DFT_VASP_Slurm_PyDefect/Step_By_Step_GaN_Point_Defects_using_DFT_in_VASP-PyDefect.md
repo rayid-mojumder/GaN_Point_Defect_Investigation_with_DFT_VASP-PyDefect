@@ -55,3 +55,5 @@ mkdir cpd
 mkdir defect
 mkdir defect/perfect
 ```
+# Step-5: Download a pristine bulk unitcell
+Download the pristine unit cell from the materials project and upload it to the *unitcell/structure_opt/* directory
