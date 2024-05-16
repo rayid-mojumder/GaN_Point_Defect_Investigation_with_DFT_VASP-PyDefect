@@ -339,7 +339,7 @@ pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell_hse.
 ```
 
 
------------- END OF THE CODE ----------------------
+## ------------ END OF THE CODE ----------------------
 
 
 > Suggestion-1: While Calculating Formation Energy Diagram (customize parameters from help option):
@@ -380,7 +380,7 @@ pydefect_vasp beoi -h
 pydefect pe --help
 ```
 
------------- END OF SUGGESTIONS ----------------------
+## ------------ END OF SUGGESTIONS ----------------------
 /////////////// THANK YOU VERY MUCH /////////////////
 
 > Some random Stuffs:
