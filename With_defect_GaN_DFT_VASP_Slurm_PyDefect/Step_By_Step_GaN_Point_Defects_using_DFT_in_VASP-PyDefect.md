@@ -62,8 +62,8 @@ Download the pristine unit cell from the materials project and upload it to the 
 `
 <br> From this point on, I assume you are following the provided directory tree. If that is the case, you can copy and paste the codes into the terminal without any issues. <br>In any case, if you see errors in the directory, please check if your directory path is correctly used or not, and update the code with your own directory path. 
 * Remember, we will consider `/GaN` as our parent directory. Underwhich there will be `/unitcell`, `/cpd`, and `/defect` directories.
-* Whenever there is the command *batch some_name.slurm*, this means it's a command used with the Slurm package to execute VASP calculation. If you are using MPI-run or another package, use the execution script for that package.
-* You will find the batch scripts at the end of this step-by-step. Please update that script based on your system parameters.
+* Whenever there is the command *sbatch some_name.slurm*, this means it's a command used with the Slurm package to execute VASP calculation. If you are using MPI-run or another package, use the execution script for that package.
+* You will find the batch scripts at the end of this step-by-step. Please update that script based on your system parameters. Upload the slurm packages in the `/GaN` directory, or you can create it later on.
 Let's calculate the point defects!
 
 ## Step-6: Relax Calculation
@@ -74,4 +74,27 @@ vise vs
 # If you need uniform K-points grid use the next line (if required)
 # vise vs --uniform_kpt_mode 
 ```
-## Step-7: 
+Copy the slurm package to the structure_opt folder and run the slurm script
+```
+sbatch run.slurm
+```
+Now copy everything to the `unitcell/relax` directory and remove everything under `/structure_opt/` and then create empty *POSCAR* file and *run.slurm* files
+```
+cp * ../relax
+rm *
+touch POSCAR
+touch run.slurm
+```
+Copy the *CONTCAR* file and *run.slurm* from the `unitcell/relax/` directory and save it as a *POSCAR* file amd *run.slurm* files in the `/structure_opt/` directory
+```
+cp ../relax/CONTCAR POSCAR
+cp ../relax/run.slurm run.slurm
+# To see the Fermi energy value run the following commad
+grep E-fermi OUTCAR | tail -1
+```
+Copy the POSCAR file `/structure_opt/POSCAR` to `/band/`, `/dos`, and `/dielectric/` directories
+```
+cp POSCAR -r ../band
+cp POSCAR -r ../dos
+cp POSCAR -r ../dielectric
+```
