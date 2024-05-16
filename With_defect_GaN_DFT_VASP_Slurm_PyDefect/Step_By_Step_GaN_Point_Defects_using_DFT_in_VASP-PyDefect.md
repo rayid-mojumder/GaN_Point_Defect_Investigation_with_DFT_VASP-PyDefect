@@ -61,7 +61,7 @@ mkdir defect/perfect
 Download the pristine unit cell from the materials project and upload it to the *unitcell/structure_opt/* directory
 `
 <br> From this point on, I assume you are following the provided directory tree. If that is the case, you can copy and paste the codes into the terminal without any issues. <br>In any case, if you see errors in the directory, please check if your directory path is correctly used or not, and update the code with your own directory path. 
-* Remember, we will consider `*/GaN*` as our parent directory. Underwhich there will be `*/unitcell*`, `*/cpd*`, and `*/defect*` directories.
+* Remember, we will consider `/GaN` as our parent directory. Underwhich there will be `/unitcell`, `/cpd`, and `/defect` directories.
 * Whenever there is the command *batch some_name.slurm*, this means it's a command used with the Slurm package to execute VASP calculation. If you are using MPI-run or another package, use the execution script for that package.
 * You will find the batch scripts at the end of this step-by-step. Please update that script based on your system parameters.
 Let's calculate the point defects!
