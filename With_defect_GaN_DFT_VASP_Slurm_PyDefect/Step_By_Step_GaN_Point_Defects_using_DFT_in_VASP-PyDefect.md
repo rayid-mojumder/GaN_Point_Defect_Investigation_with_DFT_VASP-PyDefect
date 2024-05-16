@@ -72,10 +72,12 @@ Download the pristine unit cell from the materials project and upload it to the 
 * You will find the batch scripts at the end of this step-by-step. Please update that script based on your system parameters. Upload the slurm packages in the `/GaN` directory, or you can create it later on.
 Let's calculate the point defects!
  
-## Step-6: Relax Calculation and save relaxed POSCAR file for further calculations
+## Step-6: Relax Calculation and save the relaxed POSCAR file for further calculations
+* Note that the structure optimization must be generally iterated with 1.3 times larger cutoff energy until the forces and stresses are converged at the first ionic step. So if you are considering GaN, with Si and Mg dopants, then consider the highest ECUT value that is present in the potential file of Ga, N, Si, and Mg. Then use 1.3 times ECUT value of that for propert convergence. Use the same ECUT for all calculation. In my case it is 400 * 1.3 = 520 eV.
+  
 ```
 cd unitcell/structure_opt
-vise vs
+vise vs -uis ENCUT 520.0;
 # creates INCAR, POTCAR, and KPOINTS for the relax calculation
 # If you need uniform K-points grid use the next line (if required)
 # vise vs --uniform_kpt_mode 
@@ -105,12 +107,12 @@ cp POSCAR -r ../dos
 cp POSCAR -r ../dielectric
 ```
 ## Step-6: Band, DOS, and Dielectric calculation of the relaxed Unit cell
-We then calculate the band structure (BS), density of states (DOS), and dielectric constants. In the defect calculations, the BS is used for determining the valence band maximum (VBM) and conduction band minimum (CBM), while the dielectric constant, or a sum of electronic (or ion-clamped) and ionic dielectric tensors, is needed for correcting the defect formation energies.
+We then calculate the band structure (BS), density of states (DOS), and dielectric constants. In the defect calculations, the BS is used for determining the valence band maximum (VBM) and conduction band minimum (CBM), while the dielectric constant, or a sum of electronic (or ion-clamped) and ionic dielectric tensors, is needed for correcting the defect formation energies. 
 
 Band calculation:
 ```
 cd ../band
-vise vs -t band -d ../structure_opt
+vise vs -uis ENCUT 520.0 -t band -d ../structure_opt
 cd ../structure_opt
 sbatch run.slurm
 vise plot_band
@@ -125,7 +127,7 @@ cp ../relax/run.slurm run.slurm
 DOS calculation:
 ```
 cd ../dos
-vise vs -t dos -d ../structure_opt -uis LVTOT True LAECHG True KPAR 1
+vise vs -uis ENCUT 520.0 -t dos -d ../structure_opt -uis LVTOT True LAECHG True KPAR 1
 cd ../structure_opt
 sbatch run.slurm
 grep E-fermi OUTCAR | tail -1
@@ -140,7 +142,7 @@ cp ../relax/run.slurm run.slurm
 Dielectric calculation:
 ```
 cd ../dielectric
-vise vs -t dielectric_dfpt -d ../structure_opt
+vise vs -uis ENCUT 520.0 -t dielectric_dfpt -d ../structure_opt
 cd ../structure_opt
 sbatch run.slurm
 cp * -r ../dielectric/
@@ -156,10 +158,10 @@ cd ..
 pydefect_vasp u -vb band/vasprun.xml -ob band/OUTCAR -odc dielectric/OUTCAR -odi dielectric/OUTCAR -n GaN
 pydefect_print unitcell.yaml
 ```
-## At this point of simulation, you must do the following - *Modify and Correct the mprester.py and mp_tools.py files*
+## At this point of the simulation, you must do the following - *Modify and Correct the mprester.py and mp_tools.py files* [Must do this additional stage]
 *Download *mprester.py* and *mp_tools.py* files from this Github Repo directory - `GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/With_defect_GaN_DFT_VASP_Slurm_PyDefect/` path
 ```
-#Go to the mprester.py file. In the following command replace the first '/storage/home/mvm7218/' part with your own directory path
+#Go to the mprester.py file. In the following command, replace the first '/storage/home/mvm7218/' part with your own directory path
 cd /storage/home/mvm7218/.local/lib/python3.8/site-packages/mp_api/client/mprester.py
 # Replace the *mprester.py* file's content with the downloaded one
 nano mprester.py
@@ -167,12 +169,46 @@ nano mprester.py
 Find the *DEFAULT_API_KEY* line and hardcode the materials project key to the default API key (like the following). Here 'ksrEbuvP0ucRZAas11zIz8y7lii15gpy' is my own Materials Project API key.
 <br>*DEFAULT_API_KEY = environ.get("MP_API_KEY", "ksrEbuvP0ucRZAas11zIz8y7lii15gpy")*
 ```
-#Go to the mp_tools.py file. In the following command replace the first '/storage/home/mvm7218/' part with your own directory path
+#Go to the mp_tools.py file. In the following command, replace the first '/storage/home/mvm7218/' part with your own directory path
 cd /storage/home/mvm7218/.local/lib/python3.8/site-packages/pydefect/util/mp_tools.py
 # Replace the *mp_tools.py* file's content with the downloaded one
 nano mp_tools.py
 ```
 
+## Step-8: Create competing phases and run VASP calculation of the competing phases
+Create competing phases for GaN. This means all the possible scenarios with these atoms; in this case, there could be - GaN, Ga, and N. 
+```
+cd ~
+# In the following command, replace the first /storage/work/' part with your own directory path
+cd /storage/work/GaN/cpd
+pydefect_vasp mp -e Ga N --e_above_hull 0.0005
+pydefect_vasp mp -e Ga --e_above_hull 0.0005
+pydefect_vasp mp -e N --e_above_hull 0.0005
+```
+Create VASP files for these competing phases and run the calculation
+```
+for i in *_*/;do cd $i; vise vs -uis ENCUT 520.0; cd ../;done
+#Copy run.slurm to each competing phase folder and run VASP calculation
+for dir in */;do cd $dir; cp ../../unitcell/band/run.slurm .; sbatch run.slurm; cd ../;done 
+```
+Generate the *composition_energies.yaml* file and competing phase diagram (CPD). Note, *pydefect_print* command is used to visualize the *.json* or *.yaml* files
+```
+pydefect sre
+pydefect_print standard_energies.yaml
+pydefect_print relative_energies.yaml
+pydefect cv -t GaN
+pydefect_print chem_pot_diag.json
+pydefect_print target_vertices.yaml
+pydefect pc
+# In the cpd.pdf figure, A means Ga-rich, B means N-rich
+# You can also check defect formation energies (optional)
+vise_util map -e Ga N
+cd ~
+vise_util map -e Ga N
+
+```
+To know how to read the CPD diagram and other diagrams - 
+*Download and use the file on this Github Repo directory - `GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/With_defect_GaN_DFT_VASP_Slurm_PyDefect/GaN_Point_Defect_Presentation.pptx`
 
 
 
