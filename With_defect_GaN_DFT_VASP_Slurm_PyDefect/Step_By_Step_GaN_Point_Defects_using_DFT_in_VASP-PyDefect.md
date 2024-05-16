@@ -66,7 +66,7 @@ Download the pristine unit cell from the materials project and upload it to the 
 * You will find the batch scripts at the end of this step-by-step. Please update that script based on your system parameters. Upload the slurm packages in the `/GaN` directory, or you can create it later on.
 Let's calculate the point defects!
  
-## Step-6: Relax Calculation and saving relaxed POSCAR file for further calculations
+## Step-6: Relax Calculation and save relaxed POSCAR file for further calculations
 ```
 cd unitcell/structure_opt
 vise vs
@@ -98,3 +98,68 @@ cp POSCAR -r ../band
 cp POSCAR -r ../dos
 cp POSCAR -r ../dielectric
 ```
+## Step-6: Band, DOS, and Dielectric calculation of the relaxed Unit cell
+We then calculate the band structure (BS), density of states (DOS), and dielectric constants. In the defect calculations, the BS is used for determining the valence band maximum (VBM) and conduction band minimum (CBM), while the dielectric constant, or a sum of electronic (or ion-clamped) and ionic dielectric tensors, is needed for correcting the defect formation energies.
+
+Band calculation:
+```
+cd ../band
+vise vs -t band -d ../structure_opt
+cd ../structure_opt
+sbatch run.slurm
+vise plot_band
+grep E-fermi OUTCAR | tail -1
+cp * -r ../band/
+rm *
+touch POSCAR
+touch run.slurm
+cp ../relax/CONTCAR POSCAR
+cp ../relax/run.slurm run.slurm
+```
+DOS calculation:
+```
+cd ../dos
+vise vs -t dos -d ../structure_opt -uis LVTOT True LAECHG True KPAR 1
+cd ../structure_opt
+sbatch run.slurm
+grep E-fermi OUTCAR | tail -1
+vise plot_dos
+cp * -r ../dos/
+rm *
+touch POSCAR
+touch run.slurm
+cp ../relax/CONTCAR POSCAR
+cp ../relax/run.slurm run.slurm
+```
+Dielectric calculation:
+```
+cd ../dielectric
+vise vs -t dielectric_dfpt -d ../structure_opt
+cd ../structure_opt
+sbatch run.slurm
+cp * -r ../dielectric/
+rm *
+touch POSCAR
+touch run.slurm
+cp ../relax/CONTCAR POSCAR
+cp ../relax/run.slurm run.slurm
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sbatch scripts: (line-66)
