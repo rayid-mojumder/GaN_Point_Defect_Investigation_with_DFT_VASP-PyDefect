@@ -97,7 +97,7 @@ KPOINTS for DOS:
 Automatic mesh               # Comment for clarity
 0                            # Let VASP choose the grid
 Gamma                        # Centered at Gamma point
-10 10 10                      # Increased mesh density for DOS precision
+15 15 15                      # Increased mesh density for DOS precision
 ```
 ### Plotting Guidelines:
 •	DOS: Plot total and projected DOS from DOSCAR.
