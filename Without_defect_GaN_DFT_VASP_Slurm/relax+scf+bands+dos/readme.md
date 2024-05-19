@@ -8,7 +8,7 @@ INCAR.relax:
 SYSTEM = GaN Relaxation    # Descriptive name of the system
 ISTART = 0                 # Job is started from scratch
 ICHARG = 2                 # Initial electron density from atomic charges
-ENCUT = 350                # Energy cutoff for plane waves
+ENCUT = 520                # Energy cutoff for plane waves
 ISMEAR = -5                # Smearing type, -5 for tetrahedron method with Blöchl corrections
 EDIFF = 1E-5               # Energy convergence criterion
 EDIFFG = -0.01             # Force convergence criterion, negative for relaxation
@@ -42,7 +42,7 @@ INCAR.scf:
 SYSTEM = GaN SCF            # Descriptive name for the SCF calculation
 ISTART = 0                  # Start from scratch (use 1 if starting from WAVECAR)
 ICHARG = 2                  # Use atomic charges for electron density
-ENCUT = 350                 # Energy cutoff for plane waves
+ENCUT = 520                 # Energy cutoff for plane waves
 ISMEAR = 0                  # Gaussian smearing, appropriate for insulators
 SIGMA = 0.05                # Width of the Gaussian smearing
 EDIFF = 1E-6                # Energy convergence criterion
@@ -57,7 +57,7 @@ INCAR.band:
 SYSTEM = GaN Band Structure # Descriptive name for the band structure calculation
 ISTART = 1                  # Start from the wavefunction of a previous calculation
 ICHARG = 11                 # Use the fixed charge density from SCF
-ENCUT = 350                 # Energy cutoff for plane waves
+ENCUT = 520                 # Energy cutoff for plane waves
 ISMEAR = -5                 # Tetrahedron method with Blöchl corrections
 EDIFF = 1E-6                # Energy convergence criterion
 LCHARG = False              # Do not write CHGCAR
@@ -86,7 +86,7 @@ INCAR.dos:
 SYSTEM = GaN DOS             # Descriptive name for the DOS calculation
 ISTART = 1                   # Start from wavefunction, post-SCF
 ICHARG = 11                  # Use the charge density from a static calculation
-ENCUT = 350                  # Energy cutoff for plane waves
+ENCUT = 520                  # Energy cutoff for plane waves
 ISMEAR = -5                  # Tetrahedron method, suitable for DOS
 EDIFF = 1E-6                 # Energy convergence criterion
 LORBIT = 11                  # Write projected DOS
