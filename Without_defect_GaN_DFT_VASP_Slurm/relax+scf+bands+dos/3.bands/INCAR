@@ -2,7 +2,7 @@ SYSTEM = GaN  # Descriptive name of the system
 ISTART = 1                 # Job is started from the wavefuction of a previous (scf) calculation 
 ICHARG = 11                 # Use a fixed electron charge density from a previous (scf) calculation 
 
-ENCUT = 430                # Energy cutoff for plane waves
+ENCUT = 520                # Energy cutoff for plane waves
 
 ISMEAR = -5                 # tetrahedron method without smearing, Gaussian smearing (ISMEAR = 0) could blur the sharp features (high-symmetric) of the band structure
 
