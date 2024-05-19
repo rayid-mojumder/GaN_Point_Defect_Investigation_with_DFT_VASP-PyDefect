@@ -2,7 +2,7 @@ SYSTEM = GaN  # Descriptive name of the system
 ISTART = 1                 # Job is started from the wavefuction of a previous (scf) calculation 
 ICHARG = 11                 # Use a fixed electron charge density from a previous (scf) calculation 
 
-ENCUT = 430                # Energy cutoff for plane waves
+ENCUT = 520                # Energy cutoff for plane waves
 
 ISMEAR = 0                  # Gaussian smearing, good for insulators/semiconductors
 SIGMA = 0.05                # Width of smearing in eV
