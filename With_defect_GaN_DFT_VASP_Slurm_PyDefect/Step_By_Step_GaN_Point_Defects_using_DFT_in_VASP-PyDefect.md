@@ -222,7 +222,7 @@ for i in *_*/;do cd $i; vise vs -uis ENCUT 520.0; cd ../;done
 #Copy run.slurm to each competing phase folder and run VASP calculation
 for dir in */;do cd $dir; cp ../../unitcell/band/run.slurm .; sbatch run.slurm; cd ../;done 
 ```
-Generate the *composition_energies.yaml* fil - which collects the total energies per calculated formula. Note, *pydefect_print* command is used to visualize the *.json* or *.yaml* files
+Generate the *composition_energies.yaml* file - which collects the total energies per calculated formula. Note, *pydefect_print* command is used to visualize the *.json* or *.yaml* files
 ```
 pydefect_vasp mce -d */
 pydefect_print composition_energies.yaml
