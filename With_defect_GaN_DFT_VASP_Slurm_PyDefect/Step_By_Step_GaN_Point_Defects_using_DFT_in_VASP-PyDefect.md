@@ -177,14 +177,16 @@ See the `unitcell.yaml` file to get the bandgap value (cbm - vbm = bandgap)
 ### At this point of the simulation, you must do the following 
 *Modify and Correct the mprester.py and mp_tools.py files* [Must do this additional stage]
 *Download *mprester.py* and *mp_tools.py* files from this Github Repo directory - `GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/With_defect_GaN_DFT_VASP_Slurm_PyDefect/` path. Or, you can use the updated file here - https://github.com/materialsproject/api/blob/main/mp_api/client/mprester.py
+
+Find the *DEFAULT_API_KEY* line and hardcode the materials project key to the default API key (like the following). Here 'ksrEbuvP0ucRZAas11zIz8y7lii15gpy' is my own Materials Project API key.
+<br>*DEFAULT_API_KEY = environ.get("MP_API_KEY", "ksrEbuvP0ucRZAas11zIz8y7lii15gpy")*
 ```
 #Go to the mprester.py file. In the following command, replace the first '/storage/home/mvm7218/' part with your own directory path
 cd /storage/home/mvm7218/.local/lib/python3.8/site-packages/mp_api/client/mprester.py
 # Replace the *mprester.py* file's content with the downloaded one
 nano mprester.py
 ```
-Find the *DEFAULT_API_KEY* line and hardcode the materials project key to the default API key (like the following). Here 'ksrEbuvP0ucRZAas11zIz8y7lii15gpy' is my own Materials Project API key.
-<br>*DEFAULT_API_KEY = environ.get("MP_API_KEY", "ksrEbuvP0ucRZAas11zIz8y7lii15gpy")*
+
 ```
 #Go to the mp_tools.py file. In the following command, replace the first '/storage/home/mvm7218/' part with your own directory path
 cd /storage/home/mvm7218/.local/lib/python3.8/site-packages/pydefect/util/mp_tools.py
