@@ -134,9 +134,15 @@ DOS calculation:
 cd ../dos
 vise vs -uis ENCUT 520.0 -t dos -d ../structure_opt -uis LVTOT True LAECHG True KPAR 1
 cd ../structure_opt
+```
+```
 sbatch run.slurm
-grep E-fermi OUTCAR | tail -1
+```
+```
 vise plot_dos
+grep E-fermi OUTCAR | tail -1
+```
+```
 cp * -r ../dos/
 rm *
 touch POSCAR
