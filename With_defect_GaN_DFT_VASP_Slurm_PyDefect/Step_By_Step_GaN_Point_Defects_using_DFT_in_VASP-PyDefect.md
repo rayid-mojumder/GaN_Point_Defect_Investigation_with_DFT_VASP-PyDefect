@@ -113,9 +113,15 @@ Band calculation:
 cd ../band
 vise vs -uis ENCUT 520.0 -t band -d ../structure_opt
 cd ../structure_opt
+```
+```
 sbatch run.slurm
+```
+```
 vise plot_band
 grep E-fermi OUTCAR | tail -1
+```
+```
 cp * -r ../band/
 rm *
 touch POSCAR
