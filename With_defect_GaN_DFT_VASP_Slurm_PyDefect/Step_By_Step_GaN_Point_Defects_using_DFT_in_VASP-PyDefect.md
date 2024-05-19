@@ -24,9 +24,9 @@ pip install --upgrade mp-api
 ## Step-2: Extract POTCAR files in a directory (replace directory with your own directory)
 ```bash
 cd /storage/work/mvm7218/
-mkdir potpaw_PBE.54
+mkdir POT_GGA_PAW_PBE_54
 #now upload the potpaw_PBE.54.tar.gz file to /storage/work/mvm7218/
-tar -xzvf potpaw_PBE.54.tar.gz -C /storage/work/mvm7218/potpaw_PBE.54
+tar -xzvf potpaw_PBE.54.tar.gz -C /storage/work/mvm7218/POT_GGA_PAW_PBE_54
 ```
 ## Step-3: Edit *.pmgrc.yaml* file and add POTCAR and Materials project API (you need to add your own Materials Project API number)
 ```bash
