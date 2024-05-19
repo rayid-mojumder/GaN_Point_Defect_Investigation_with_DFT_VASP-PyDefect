@@ -201,6 +201,8 @@ Move to 'cpd/' directory and run the command
 cd ~
 # In the following command, replace the first /storage/work/' part with your own directory path
 cd /storage/work/GaN/cpd
+```
+```
 pydefect_vasp mp -e Ga N --e_above_hull 0.0005
 pydefect_vasp mp -e Ga --e_above_hull 0.0005
 pydefect_vasp mp -e N --e_above_hull 0.0005
