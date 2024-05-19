@@ -155,7 +155,11 @@ Dielectric calculation:
 cd ../dielectric
 vise vs -uis ENCUT 520.0 -t dielectric_dfpt -d ../structure_opt
 cd ../structure_opt
+```
+```
 sbatch run.slurm
+```
+```
 cp * -r ../dielectric/
 rm *
 touch POSCAR
