@@ -1,0 +1,21 @@
+==== Jupyter Terminal (Installl DeepMDKIT, lamp, i-pi driver) ===================
+pip install deepmd-kit[gpu,cu12,lmp,ipi]
+pip install deepmd-kit[cpu,cu12,lmp,ipi]
+pip install pyqt5
+pip install pyqtwebengine
+
+======== Install LAMMPS’s DeePMD-kit module (built-in mode) =============
+
+========== Check if installed =========
+dp -h
+lp -h
+
+============= Install tutoring phases ============
+wget https://dp-public.oss-cn-beijing.aliyuncs.com/community/DeePMD-kit-FastLearn.tar
+tar xvf DeePMD-kit-FastLearn.tar
+cd DeePMD-kit-FastLearn
+
+========Preparing Data==============
+cd 00.data
+   import dpdata
+   dpdata.LabeledSystem('OUTCAR').to('deepmd/npy', 'data', set_size=200)
