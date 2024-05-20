@@ -377,7 +377,9 @@ pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell.yaml
   pydefect plot_defect_formation_energy -d defect_energy_summary.json -l A --allow_shallow -y -2 10 
   pydefect plot_defect_formation_energy -d defect_energy_summary.json -l B --allow_shallow -y -2 10
 ```
-
+[Optional]: If you want to extend your PBE formation energy plot to the HSE limit do the following:
+- go to **/unitcell/unitcell.yaml** file then open it in text editor and change the VBM and CBM to your HSE value
+- Re-run all the codes in Step-14
 ------------ END OF THE CODE ----------------------
 You can close everything here. But if you want to know more functionalities of VASP please read the suggestions part too. Thank you.
 
