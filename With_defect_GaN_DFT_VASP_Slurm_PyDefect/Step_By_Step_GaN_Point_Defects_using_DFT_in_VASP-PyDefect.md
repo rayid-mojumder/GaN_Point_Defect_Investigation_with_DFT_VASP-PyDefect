@@ -288,13 +288,14 @@ pydefect_print defect_in.yaml
 ```
 (optional) <start>
 If does not work (and receive NotPrimitiveError, follow this:
-    - replace the value of the CONTCAR file in '/unitcell/structure_opt/' file with 'Unitcell in the supercell_info.json'
+    - replace the value of the POSCAR file in '/unitcell/structure_opt/' file with 'Unitcell in the supercell_info.json'
     ```
-    pydefect s -p ../unitcell/structure_opt/CONTCAR
-    pydefect_util ai --local_extrema volumetric_data_local_extrema.json -i 1 2  
+    pydefect s -p ../unitcell/structure_opt/POSCAR
     ```
-  - If the input structure is different from the standardized primitive cell, NotPrimitiveError is raised
-  - To pop the interstitial sites, use>> pydefect pi -i 1 -s supercell_info.json
+    - then re-run all the steps from the start of Step-9
+    
+If the input structure is different from the standardized primitive cell, NotPrimitiveError is raised
+To pop the interstitial sites, use>> pydefect pi -i 1 -s supercell_info.json
 <end>
 
 ## Step-10: Create Point-defect Supercell directories and run VASP calculation for defect-induced supercells
