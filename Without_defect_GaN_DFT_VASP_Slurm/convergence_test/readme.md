@@ -1,3 +1,7 @@
+# Follow Youtube Playlist to use this GitHub Repository
+[Point Defects Using VASP and PyDefect (DFT)](https://www.youtube.com/playlist?list=PLSm7ZQMDqBcdkODXc4n9LvCrBzmgtRQpA)
+![image](https://github.com/rayid-mojumder/GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/assets/39030809/588d2b4a-6200-402a-b8f6-e7e1f82a55c2)
+
 # Convergence Tests
 In Density Functional Theory (DFT) calculations using the Vienna Ab initio Simulation Package (VASP), ensuring the convergence of the calculations with respect to the plane-wave cutoff energy (**ENCUT**) and the **K-point** mesh is crucial for obtaining reliable results. Here's a detailed look at these two types of convergence tests:
 
