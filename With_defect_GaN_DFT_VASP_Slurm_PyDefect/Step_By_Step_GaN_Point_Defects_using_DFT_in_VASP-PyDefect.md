@@ -358,6 +358,7 @@ for dir in *_*/; do cd $dir; pydefect bes -d . -pbes ../perfect/perfect_band_edg
 
 ## Step-14: Plot defect formation energy diagram
 * Defect formation energies require - the band edges, chemical potentials of the competing phases, and total energies of the perfect and defective supercells
+* Creates *defect_energy_info.yaml* in each of the defect directories
 ```
 pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell.yaml -s ../cpd/standard_energies.yaml
 ```
