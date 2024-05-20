@@ -325,7 +325,20 @@ cd perfect
 pydefect_vasp cr -d .
 cd ..
 ```
-## Step-12: Check defect eigenvalues and band-edge states in supercell calculations (Optional stage)
+## Step-12: Corrections of defect formation energies in finite-size supercells
+The total energies for charged defects are not properly estimated due to interactions between a defect, its images, and background charge
+```
+pydefect efnv -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell.yaml
+```
+Create defect_structure_info.json files to analyze the defect local structures [in each defect directory]
+```
+pydefect dsi -d *_*/
+```
+Create VESTA file (defect.vesta) for analyzing the defect structure files [in each defect directory]
+```
+pydefect_util dvf -d *_*/ 
+```
+## Step-13: Check defect eigenvalues and band-edge states in supercell calculations (Optional stage)
 * Defects with (1) deep localized states inside band gap, (2) band edges, (3) without defect states inside the band gap or near band edges
 * Analyze the eigenvalues and band-edge states 
 - Generates the *perfect_band_edge_state.json* files to show the information on the eigenvalues and orbital information of the VBM and CBM in the perfect supercell. [parent defect directory]
@@ -343,7 +356,7 @@ pydefect_vasp bes -d *_*/ -pbes perfect/perfect_band_edge_state.json
 for dir in *_*/; do cd $dir; pydefect bes -d . -pbes ../perfect/perfect_band_edge_state.json; cd ..; done
 ```
 
-## Step-13: Plot defect formation energy diagram
+## Step-14: Plot defect formation energy diagram
 * Defect formation energies require - the band edges, chemical potentials of the competing phases, and total energies of the perfect and defective supercells
 ```
 pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell_hse.yaml -s ../cpd/standard_energies.yaml
