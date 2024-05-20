@@ -1,6 +1,7 @@
 # Follow Youtube Playlist to use this GitHub Repository
 [Point Defects Using VASP and PyDefect (DFT)](https://www.youtube.com/playlist?list=PLSm7ZQMDqBcdkODXc4n9LvCrBzmgtRQpA)
-https://youtube.com/playlist?list=PLSm7ZQMDqBcdkODXc4n9LvCrBzmgtRQpA
+![image](https://github.com/rayid-mojumder/GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/assets/39030809/588d2b4a-6200-402a-b8f6-e7e1f82a55c2)
+
 
 # VASP DFT Simulation Guide for GaN
 This README provides detailed instructions for conducting DFT simulations of Gallium Nitride (GaN) using the Vienna Ab initio Simulation Package (VASP). The guide covers various types of calculations including self-consistent field (scf), band structure, density of states (DOS), projected density of states (PDOS), and phonon calculations, both with and without radiation-induced defects.
