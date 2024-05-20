@@ -255,7 +255,7 @@ pydefect_print supercell_info.json
 # If one wants to know the conventional cell run the following (optional)
 # vise si -p ../unitcell/structure_opt/POSCAR -c
 ```
-Incorporate defects (antisites)
+Incorporate defects (antisites and vacancies)
 ```
 pydefect ds
 ```
