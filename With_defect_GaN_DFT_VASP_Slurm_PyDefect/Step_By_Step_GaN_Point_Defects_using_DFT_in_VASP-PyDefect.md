@@ -326,15 +326,15 @@ pydefect_vasp cr -d .
 cd ..
 ```
 ## Step-12: Corrections of defect formation energies in finite-size supercells
-The total energies for charged defects are not properly estimated due to interactions between a defect, its images, and background charge
+The total energies for charged defects are not properly estimated due to interactions between a defect, its images, and background charge. The following command creates *correction.json* and *correction.pdf* files in each of the defect directory
 ```
 pydefect efnv -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell.yaml
 ```
-Create defect_structure_info.json files to analyze the defect local structures [in each defect directory]
+The following command creates *defect_structure_info.json* files to analyze the defect local structures [in each defect directory]
 ```
 pydefect dsi -d *_*/
 ```
-Create VESTA file (defect.vesta) for analyzing the defect structure files [in each defect directory]
+The following command creates VESTA file (defect.vesta) for analyzing the defect structure files [in each defect directory]
 ```
 pydefect_util dvf -d *_*/ 
 ```
@@ -359,11 +359,11 @@ for dir in *_*/; do cd $dir; pydefect bes -d . -pbes ../perfect/perfect_band_edg
 ## Step-14: Plot defect formation energy diagram
 * Defect formation energies require - the band edges, chemical potentials of the competing phases, and total energies of the perfect and defective supercells
 ```
-pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell_hse.yaml -s ../cpd/standard_energies.yaml
+pydefect dei -d *_*/ -pcr perfect/calc_results.json -u ../unitcell/unitcell.yaml -s ../cpd/standard_energies.yaml
 ```
 * Create a *defect_energy_summary.json* file with the defect_energy_summary (= des) sub-command. [in the parent defect folder]
 ```
-  pydefect des -d *_*/ -u ../unitcell/unitcell_hse.yaml -pbes perfect/perfect_band_edge_state.json -t ../cpd/target_vertices.yaml
+  pydefect des -d *_*/ -u ../unitcell/unitcell.yaml -pbes perfect/perfect_band_edge_state.json -t ../cpd/target_vertices.yaml
 ```
 * Create the *calc_summary.json* file with the calc_summary (= cs) sub-command [in the parent defect directory]
 ```
