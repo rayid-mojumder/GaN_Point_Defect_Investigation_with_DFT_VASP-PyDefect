@@ -303,8 +303,9 @@ The following commands create *defect_entry.json* file in each directory. When r
 ```
 pydefect_vasp de
 cp SPOSCAR ./perfect/POSCAR
+#if required, run the following command in each defect directory to get that specific defect supercell info
 pydefect_print defect_entry.json
-#if required, run the above last command in each directory to get that specific defect supercell info
+
 ```
 ```
 (optional)       
