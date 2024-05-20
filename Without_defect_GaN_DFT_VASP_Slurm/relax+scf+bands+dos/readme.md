@@ -1,3 +1,7 @@
+# Follow Youtube Playlist to use this GitHub Repository
+[Point Defects Using VASP and PyDefect (DFT)](https://www.youtube.com/playlist?list=PLSm7ZQMDqBcdkODXc4n9LvCrBzmgtRQpA)
+![image](https://github.com/rayid-mojumder/GaN_Point_Defect_Investigation_with_DFT_VASP-PyDefect/assets/39030809/588d2b4a-6200-402a-b8f6-e7e1f82a55c2)
+
 # GaN Electronic Properties (scf, bands, dos) with VASP
 
 To prepare for your VASP calculations involving relaxation, SCF, band structure, and DOS for GaN, you need properly configured INCAR, POSCAR, and KPOINTS files. Below is the comprehensive guidance for each calculation step, including file preparation, file usage sequence, and plotting instructions:
