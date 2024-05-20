@@ -255,9 +255,13 @@ pydefect_print supercell_info.json
 # If one wants to know the conventional cell run the following (optional)
 # vise si -p ../unitcell/structure_opt/POSCAR -c
 ```
-Incorporate defects
+Incorporate defects (antisites)
 ```
 pydefect ds
+```
+To see the antisites created by the above command use thisL:
+```
+pydefect_print defect_in.yaml
 ```
 Incorporate impurity defects. I am using substitutional defect species (n-type: Si, p-type: Mg).
 ```
