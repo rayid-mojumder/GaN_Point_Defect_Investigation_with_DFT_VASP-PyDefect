@@ -57,6 +57,3 @@ Contributions, bug reports, and feature requests are welcome! Fork the repo, cre
 ## 📄 License
 
 Released under the [MIT License](./LICENSE). The original release and repository of the PyDefect tutorial belong to the Kumagi Group. Please follow their official site: [click here](https://kumagai-group.github.io/pydefect/index.html)
-
-## Copyright
-* Md. Rayid Hasan Mojumder, Penn State, USA
