@@ -1,5 +1,5 @@
-# CITE This Work!
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15358398.svg)](https://doi.org/10.5281/zenodo.15358398)
+# Please CITE This Work!
+Point Defects Using VASP and PyDefect (DFT) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15358398.svg)](https://doi.org/10.5281/zenodo.15358398)
 
 ## Follow Youtube Playlist to use this GitHub Repository
 [Point Defects Using VASP and PyDefect (DFT)](https://www.youtube.com/playlist?list=PLSm7ZQMDqBcdkODXc4n9LvCrBzmgtRQpA)
