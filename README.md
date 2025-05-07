@@ -9,8 +9,6 @@ Point Defects Using VASP and PyDefect (DFT) [![DOI](https://zenodo.org/badge/DOI
 # Release v1.0.0 — “GaN Point‑Defect Toolkit”
 **Date:** 2025‑05‑07
 
-A first stable release of the **GaN Point‑Defect Investigation** framework, combining VASP-based DFT workflows with PyDefect‑powered defect analysis.
-
 ## 🚀 Highlights
 
 - **Pristine (defect‑free) GaN workflows**  
@@ -21,22 +19,7 @@ A first stable release of the **GaN Point‑Defect Investigation** framework, co
   Located in `others/`
 - **Comprehensive documentation** in `README.md`
 - **Open‑source MIT license**  
-
-## 🗂️ Changelog
-
-### Added
-- Initial project scaffold and directory structure  
-- SLURM submission templates, example VASP input decks  
-- PyDefect configuration files and analysis notebooks  
-- Helper scripts for batch‑processing and automated post‑processing  
-
-### Changed
-- Renamed raw scripts → organized under `others/` for clarity  
-- Enhanced README with detailed parameter explanations  
-
-### Fixed
-- Corrected POSCAR supercell dimensions for 2×2×2 GaN  
-- Addressed INCAR convergence settings for charged defect calculations  
+ 
 
 ## 📖 Getting Started
 
@@ -75,7 +58,7 @@ Contributions, bug reports, and feature requests are welcome! Fork the repo, cre
 
 ## 📄 License
 
-Released under the [MIT License](./LICENSE).
+Released under the [MIT License](./LICENSE). The original release and repository of the PyDefect tutorial belong to the Kumagi Group. Please follow their official site: [click here](https://kumagai-group.github.io/pydefect/index.html)
 
 ## Copyright
 * Md. Rayid Hasan Mojumder, Penn State, USA
