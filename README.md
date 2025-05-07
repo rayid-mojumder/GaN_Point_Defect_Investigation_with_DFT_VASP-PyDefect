@@ -1,5 +1,3 @@
-## This work is a supplementary working pipeline for the official PyDefect repository: [Tutorial of Pydefect](https://kumagai-group.github.io/pydefect/index.html)
-
 # Please CITE This Work!
 Point Defects Using VASP and PyDefect (DFT) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15358398.svg)](https://doi.org/10.5281/zenodo.15358398)
 
